@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Checklist Game</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            background-image:
+                linear-gradient(#20B2AA 1px, transparent 1px),
+                linear-gradient(90deg, #20B2AA 1px, transparent 1px),
+                linear-gradient(#FFB6C1 1px, transparent 1px),
+                linear-gradient(90deg, #FFB6C1 1px, transparent 1px),
+                linear-gradient(rgba(32, 178, 170, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(32, 178, 170, 0.3) 1px, transparent 1px);
+            background-size: 25px 25px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #20B2AA;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px solid #FFB6C1;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li.completed {
+            background-color: #20B2AA;
+            color: #ffffff;
+            text-decoration: line-through;
+            border-color: #20B2AA;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #FFB6C1;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #FF69B4;
+        }
+
+        .complete-message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #20B2AA;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .complete-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Checklist Game</h1>
+        <ul id="checklist">
+            <li>
+                Subheadings & Layout: Are subheadings clear, concise, and creative?
+                <button onclick="markAsComplete(this)">Complete</button>
+            </li>
+            <li>
+                Research & Inspiration: Have you included quotes to support your knowledge?
+                <button onclick="markAsComplete(this)">Complete</button>
+            </li>
+            <li>
+                Design Development: Do your pages show a relationship between 2D and 3D ideas?
+                <button onclick="markAsComplete(this)">Complete</button>
+            </li>
+            <li>
+                Refinement & Selection: Do you show a variety of similar but different ideas?
+                <button onclick="markAsComplete(this)">Complete</button>
+            </li>
+            <li>
+                Referencing: Have you properly credited your sources?
+                <button onclick="markAsComplete(this)">Complete</button>
+            </li>
+        </ul>
+        <div id="completeMessage" class="complete-message">
+            🎉 Great job! You've completed the checklist! 🎉
+        </div>
+    </div>
+
+    <script>
+        function markAsComplete(button) {
+            const listItem = button.parentElement;
+            listItem.classList.add('completed');
+            button.remove();
+
+            const allItems = document.querySelectorAll('#checklist li');
+            const completedItems = document.querySelectorAll('#checklist li.completed');
+
+            if (allItems.length === completedItems.length) {
+                document.getElementById('completeMessage').classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>

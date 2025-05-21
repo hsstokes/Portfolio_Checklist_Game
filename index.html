@@ -22,12 +22,13 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -47,16 +48,34 @@
             border: 2px solid #FFB6C1;
             border-radius: 5px;
             background-color: #f9f9f9;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         li.completed {
             background-color: #20B2AA;
             color: #ffffff;
-            text-decoration: line-through;
             border-color: #20B2AA;
+        }
+
+        .checklist-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checklist-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .checklist-text {
+            flex-grow: 1;
+            padding-right: 10px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 5px;
         }
 
         button {
@@ -67,10 +86,19 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            white-space: nowrap;
         }
 
         button:hover {
             background-color: #FF69B4;
+        }
+
+        .example-button {
+            background-color: #20B2AA;
+        }
+
+        .example-button:hover {
+            background-color: #178e8a;
         }
 
         .complete-message {
@@ -86,33 +114,149 @@
         .complete-message.show {
             display: block;
         }
+
+        .example-section {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .example-section.show {
+            display: block;
+        }
+
+        .example-image {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Portfolio Checklist Game</h1>
+        
         <ul id="checklist">
-            <li>
-                Subheadings & Layout: Are subheadings clear, concise, and creative? Have you included graphic elements
-                <button onclick="markAsComplete(this)">Complete</button>
+            <li data-example="./examples/subheadings_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Subheadings & Layout: Are subheadings clear, concise, and creative?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good subheadings & layout">
+                    </div>
+                </div>
             </li>
-            <li>
-                Research & Inspiration: Have you included quotes to support your knowledge?
-                <button onclick="markAsComplete(this)">Complete</button>
+            
+            <li data-example="./examples/research_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Research & Inspiration: Have you included quotes to support your knowledge?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good research & inspiration">
+                    </div>
+                </div>
             </li>
-            <li>
-                Design Development: Do your pages show a relationship between 2D and 3D ideas? Have you included research links to support your design development?
-                <button onclick="markAsComplete(this)">Complete</button>
+            
+            <li data-example="./examples/design_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Design Development: Do your pages show a relationship between 2D and 3D ideas?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good design development">
+                    </div>
+                </div>
             </li>
-            <li>
-                Refinement & Selection: Do you show a variety of similar but different design ideas from which to select, edit, and inform your final lineup?
-                <button onclick="markAsComplete(this)">Complete</button>
+            
+            <li data-example="./examples/refinement_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Refinement & Selection: Do you show a variety of similar but different ideas?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good refinement & selection">
+                    </div>
+                </div>
             </li>
-            <li>
-                Referencing: Have you properly credited your sources?
-                <button onclick="markAsComplete(this)">Complete</button>
+            
+            <li data-example="./examples/referencing_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Referencing: Have you properly credited your sources?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good referencing">
+                    </div>
+                </div>
+            </li>
+            
+            <li data-example="./examples/color_palette_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Color Palette: Have you included a coherent color palette in your design process?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good color palette">
+                    </div>
+                </div>
+            </li>
+            
+            <li data-example="./examples/typography_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Typography: Is your font choice consistent and appropriate for your theme?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good typography">
+                    </div>
+                </div>
+            </li>
+            
+            <li data-example="./examples/visual_elements_example.jpg">
+                <div class="checklist-item">
+                    <div class="checklist-top">
+                        <span class="checklist-text">Visual Elements: Do your illustrations, photographs, and diagrams enhance your message?</span>
+                        <div class="button-group">
+                            <button class="example-button" onclick="toggleExample(this)">Example</button>
+                            <button onclick="markAsComplete(this)">Complete</button>
+                        </div>
+                    </div>
+                    <div class="example-section">
+                        <img class="example-image" src="" alt="Example of good visual elements">
+                    </div>
+                </div>
             </li>
         </ul>
+        
         <div id="completeMessage" class="complete-message">
             🎉 Great job! You've completed the checklist! 🎉
         </div>
@@ -120,10 +264,30 @@
 
     <script>
         function markAsComplete(button) {
-            const listItem = button.parentElement;
+            const listItem = button.closest('li');
             listItem.classList.add('completed');
             button.remove();
 
+            checkAllCompleted();
+        }
+
+        function toggleExample(button) {
+            const listItem = button.closest('li');
+            const exampleSection = listItem.querySelector('.example-section');
+            const exampleImage = listItem.querySelector('.example-image');
+            
+            if (exampleSection.classList.contains('show')) {
+                exampleSection.classList.remove('show');
+            } else {
+                // Set the image source from the data attribute
+                const imagePath = listItem.getAttribute('data-example');
+                exampleImage.src = imagePath;
+                
+                exampleSection.classList.add('show');
+            }
+        }
+
+        function checkAllCompleted() {
             const allItems = document.querySelectorAll('#checklist li');
             const completedItems = document.querySelectorAll('#checklist li.completed');
 

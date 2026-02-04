@@ -864,6 +864,31 @@ p {
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* Time allocation box */
+.time-allocation {
+  background: linear-gradient(135deg, #fff8e1 0%, #fff 100%);
+  border: 2px solid #ffc107;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.time-allocation h4 {
+  color: #f57c00;
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.time-allocation ul {
+  margin-left: 20px;
+}
+
+.time-allocation li {
+  margin-bottom: 8px;
+}
+
 /* Print button */
 .print-button {
   position: fixed;
@@ -944,19 +969,19 @@ p {
 
   <!-- Workshop Structure Overview -->
   <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px dashed #666;">
-    <h3 style="text-align: center; margin-top: 0; color: #333;">What You Will Learn</h3>
+    <h3 style="text-align: center; margin-top: 0; color: #333;">Workshop Structure (2 hours total)</h3>
     <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 15px;">
       <div style="flex: 1; min-width: 200px; background: var(--inclass-banner); padding: 15px; border-radius: 8px; border-left: 5px solid var(--inclass);">
-        <h4 style="margin-top: 0; color: var(--inclass);">TASK 1</h4>
-        <p style="margin-bottom: 0;">Portfolio Checklist Game (1 hr)</p>
+        <h4 style="margin-top: 0; color: var(--inclass);">TASK 1 (45 mins)</h4>
+        <p style="margin-bottom: 0;">Checklist + Document Progress + Upload</p>
       </div>
       <div style="flex: 1; min-width: 200px; background: var(--homework-banner); padding: 15px; border-radius: 8px; border-left: 5px solid var(--homework);">
-        <h4 style="margin-top: 0; color: var(--homework);">TASK 2</h4>
-        <p style="margin-bottom: 0;">Document Your Progress (30-45 mins)</p>
+        <h4 style="margin-top: 0; color: var(--homework);">TASK 2 (45 mins)</h4>
+        <p style="margin-bottom: 0;">Checklist + Document Progress + Upload</p>
       </div>
       <div style="flex: 1; min-width: 200px; background: var(--quiz-light); padding: 15px; border-radius: 8px; border-left: 5px solid var(--quiz);">
         <h4 style="margin-top: 0; color: var(--quiz);">TASK 3</h4>
-        <p style="margin-bottom: 0;">Upload to Padlet</p>
+        <p style="margin-bottom: 0;">Final Review & Submit</p>
       </div>
     </div>
   </div>
@@ -974,15 +999,15 @@ p {
     </div>
     <div class="nav-block nav-task1" data-section="task1">
       <h3>Task 1</h3>
-      <p>Checklist Game</p>
+      <p>First Cycle (45 mins)</p>
     </div>
     <div class="nav-block nav-task2" data-section="task2">
       <h3>Task 2</h3>
-      <p>Document Progress</p>
+      <p>Second Cycle (45 mins)</p>
     </div>
     <div class="nav-block nav-task3" data-section="task3">
       <h3>Task 3</h3>
-      <p>Submit Work</p>
+      <p>Final Submit</p>
     </div>
   </div>
   
@@ -1001,6 +1026,7 @@ p {
         <div>
           <p><strong>Objective:</strong> This session is about ensuring your portfolio meets the assessment criteria and tells your story clearly and creatively.</p>
           <p>You will work through a checklist game to review key areas of your portfolio, then document your progress with screenshots and reflection notes.</p>
+          <p><strong>How it works:</strong> You'll complete two cycles. In each cycle, you'll choose one area from the checklist to review, make improvements to your portfolio, document your progress, and upload to Padlet.</p>
         </div>
         
         <div class="workshop-learning-points">
@@ -1038,20 +1064,28 @@ p {
     </div>
   </div>
 
-  <!-- ==================== TASK 1: PORTFOLIO CHECKLIST GAME ==================== -->
+  <!-- ==================== TASK 1: FIRST CYCLE ==================== -->
   <div id="task1" class="content-section">
     <div class="section-banner inclass-banner">
-      TASK 1: Portfolio Checklist Game (1 hour)
+      TASK 1: First Cycle — Review, Improve, Document, Upload (45 minutes)
+    </div>
+
+    <div class="time-allocation">
+      <h4>⏱️ Time Breakdown for Task 1</h4>
+      <ul>
+        <li><strong>30 minutes:</strong> Choose ONE area from the checklist below and make improvements to your portfolio</li>
+        <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
+      </ul>
     </div>
 
     <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      Work through the checklist step by step. Click "Example" to see what good work looks like, then click "Complete" when you've checked that area of your portfolio.
+      <strong>Step 1:</strong> Choose ONE suggestion from the checklist below to focus on. Click "Example" to see what good work looks like.
     </p>
 
     <!-- Checklist Game -->
     <div class="checklist-game-container">
       <div class="checklist-game-header">
-        <h3>Portfolio Checklist Game</h3>
+        <h3>Portfolio Checklist — Choose ONE Area</h3>
         <span class="checklist-progress" id="checklistProgress">0 / 12 Complete</span>
       </div>
 
@@ -1304,9 +1338,73 @@ p {
       </div>
     </div>
 
+    <!-- Document Your Progress Section -->
+    <h2>Step 2: Document Your Progress</h2>
+
+    <p>After making improvements to your chosen area, document your work using the Progress Documentation Tool.</p>
+
+    <div class="workflow-box" style="border-color: var(--inclass);">
+      <div class="workflow-header" style="background: var(--inclass);">
+        <h3>How to Document (15 minutes)</h3>
+      </div>
+      <div class="workflow-steps">
+        <div class="step">
+          <div class="step-number" style="background: var(--inclass);">1</div>
+          <div class="step-title" style="color: var(--inclass);">Take Screenshot of Your Improvement</div>
+          <div class="step-content">
+            <ul>
+              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span></li>
+              <li><strong>Windows:</strong> Press <span class="shortcut">Windows + Shift + S</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--inclass);">2</div>
+          <div class="step-title" style="color: var(--inclass);">Add Notes</div>
+          <div class="step-content">
+            <p>Write brief notes about:</p>
+            <ul>
+              <li>Which checklist area you focused on</li>
+              <li>What changes you made</li>
+              <li>What worked well / what needs more work</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--inclass);">3</div>
+          <div class="step-title" style="color: var(--inclass);">Upload to Padlet</div>
+          <div class="step-content">
+            <p>Save your progress report and upload to Padlet with your name as the title.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Documentation Tool Link -->
+    <div style="background: var(--inclass-light); padding: 25px; border-radius: 12px; border: 2px solid var(--inclass); margin: 30px 0; text-align: center;">
+      <h3 style="color: var(--inclass); margin-top: 0;">📸 Progress Documentation Tool</h3>
+      <p>Use this interactive tool to capture and organise your progress screenshots with notes.</p>
+      <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" style="display: inline-block; background: var(--inclass); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 10px;">
+        Open Progress Tool →
+      </a>
+    </div>
+
+    <!-- Upload for Task 1 -->
+    <div style="background: linear-gradient(135deg, var(--inclass-light) 0%, #fff 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--inclass);">
+      <h3 style="color: var(--inclass); text-align: center; margin-top: 0; margin-bottom: 20px;">📤 Upload Task 1 Progress Report</h3>
+      <p style="text-align: center;">Save your documentation as JPEG, add your name as the title, then upload.</p>
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--inclass); color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4);">
+          Upload Task 1 to Padlet →
+        </a>
+      </div>
+    </div>
+
     <div class="tip-box">
       <h4>💡 Pro Tip</h4>
-      <p>Don't rush through the checklist! Take time to actually review each area of your portfolio and make improvements as you go.</p>
+      <p>Once you've uploaded Task 1, move on to Task 2 and choose a <strong>different</strong> area from the checklist to improve!</p>
     </div>
 
     <div class="nav-buttons">
@@ -1315,70 +1413,76 @@ p {
     </div>
   </div>
 
-  <!-- ==================== TASK 2: DOCUMENT YOUR PROGRESS ==================== -->
+  <!-- ==================== TASK 2: SECOND CYCLE ==================== -->
   <div id="task2" class="content-section">
     <div class="section-banner homework-banner">
-      TASK 2: Document Your Progress (30-45 Minutes)
+      TASK 2: Second Cycle — Review, Improve, Document, Upload (45 minutes)
+    </div>
+
+    <div class="time-allocation">
+      <h4>⏱️ Time Breakdown for Task 2</h4>
+      <ul>
+        <li><strong>30 minutes:</strong> Choose a DIFFERENT area from the checklist and make improvements to your portfolio</li>
+        <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
+      </ul>
+    </div>
+
+    <div class="important-notice">
+      <strong>Important:</strong> For Task 2, choose a <strong>different</strong> checklist area than the one you worked on in Task 1. This ensures you're making progress across multiple aspects of your portfolio.
     </div>
 
     <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      Capture screenshots and write notes about your progress for each checklist area.
+      <strong>Step 1:</strong> Return to the checklist and choose a DIFFERENT area to focus on.
     </p>
 
-    <!-- How to Document -->
-    <h2>How to Document Your Practice</h2>
+    <!-- Link back to checklist -->
+    <div style="background: #f8f8f8; padding: 20px; border-radius: 12px; border: 2px solid var(--homework); margin: 25px 0; text-align: center;">
+      <h3 style="color: var(--homework); margin-top: 0;">📋 Review the Checklist</h3>
+      <p>Go back to Task 1 to view the full checklist and choose your second area to improve.</p>
+      <button onclick="goToSection('task1')" style="background: var(--homework); color: white; padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 10px;">
+        View Checklist in Task 1 →
+      </button>
+    </div>
+
+    <!-- Document Your Progress Section -->
+    <h2>Step 2: Document Your Progress</h2>
+
+    <p>After making improvements to your second chosen area, document your work.</p>
 
     <div class="workflow-box" style="border-color: var(--homework);">
       <div class="workflow-header" style="background: var(--homework);">
-        <h3>Step-by-Step Documentation</h3>
+        <h3>How to Document (15 minutes)</h3>
       </div>
       <div class="workflow-steps">
         <div class="step">
           <div class="step-number" style="background: var(--homework);">1</div>
-          <div class="step-title" style="color: var(--homework);">Add Progress Screenshots</div>
+          <div class="step-title" style="color: var(--homework);">Take Screenshot of Your Improvement</div>
           <div class="step-content">
-            <p>Use the upload button below to add screenshots showing your progress in each area:</p>
             <ul>
-              <li>Subheadings & Layout</li>
-              <li>Research & Inspiration</li>
-              <li>Design Development</li>
-              <li>Refinement & Selection</li>
-              <li>Referencing</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--homework);">2</div>
-          <div class="step-title" style="color: var(--homework);">Write Your Notes</div>
-          <div class="step-content">
-            <p>For each screenshot, write concise notes:</p>
-            <ul>
-              <li>What changes did you make?</li>
-              <li>What worked well?</li>
-              <li>What needs improvement?</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--homework);">3</div>
-          <div class="step-title" style="color: var(--homework);">Take Final Screenshot</div>
-          <div class="step-content">
-            <p>How to take screenshots of your work:</p>
-            <ul>
-              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span> for full screen</li>
+              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span></li>
               <li><strong>Windows:</strong> Press <span class="shortcut">Windows + Shift + S</span></li>
             </ul>
           </div>
         </div>
         
         <div class="step">
-          <div class="step-number" style="background: var(--homework);">4</div>
+          <div class="step-number" style="background: var(--homework);">2</div>
+          <div class="step-title" style="color: var(--homework);">Add Notes</div>
+          <div class="step-content">
+            <p>Write brief notes about:</p>
+            <ul>
+              <li>Which checklist area you focused on (different from Task 1)</li>
+              <li>What changes you made</li>
+              <li>What worked well / what needs more work</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--homework);">3</div>
           <div class="step-title" style="color: var(--homework);">Upload to Padlet</div>
           <div class="step-content">
-            <p>Click "Download Progress Report" to save your work as a PDF</p>
-            <p>Upload your PDF to Padlet for review.</p>
+            <p>Save your progress report and upload to Padlet with your name as the title.</p>
           </div>
         </div>
       </div>
@@ -1393,13 +1497,24 @@ p {
       </a>
     </div>
 
+    <!-- Upload for Task 2 -->
+    <div style="background: linear-gradient(135deg, var(--homework-light) 0%, #fff 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--homework);">
+      <h3 style="color: var(--homework); text-align: center; margin-top: 0; margin-bottom: 20px;">📤 Upload Task 2 Progress Report</h3>
+      <p style="text-align: center;">Save your documentation as JPEG, add your name as the title, then upload.</p>
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--homework); color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(234, 55, 163, 0.4);">
+          Upload Task 2 to Padlet →
+        </a>
+      </div>
+    </div>
+
     <div class="reminder-box">
-      <h4>📋 Documentation Should Include:</h4>
+      <h4>📋 By the End of Task 2 You Should Have:</h4>
       <ul>
-        <li>Screenshots from each checklist area</li>
-        <li>Brief notes on what you changed</li>
-        <li>Reflection on what worked and what didn't</li>
-        <li>Final screenshot of completed documentation</li>
+        <li>Two separate progress reports uploaded to Padlet</li>
+        <li>Each report focusing on a different checklist area</li>
+        <li>Screenshots showing your improvements</li>
+        <li>Notes explaining what you changed and learned</li>
       </ul>
     </div>
 
@@ -1409,18 +1524,43 @@ p {
     </div>
   </div>
 
-  <!-- ==================== TASK 3: SUBMIT WORK ==================== -->
+  <!-- ==================== TASK 3: FINAL SUBMIT ==================== -->
   <div id="task3" class="content-section">
     <div class="section-banner quiz-banner">
-      TASK 3: Upload Your Work to Padlet
+      TASK 3: Final Review & Confirmation
     </div>
 
     <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      Submit your completed documentation to the Term 2 Padlet Wall.
+      Check that you have uploaded both progress reports to Padlet.
     </p>
 
+    <!-- Final Checklist -->
+    <div style="background: linear-gradient(135deg, var(--secondary-light) 0%, #fff 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--secondary);">
+      <h3 style="color: var(--secondary); text-align: center; margin-top: 0; margin-bottom: 25px;">✅ Final Submission Checklist</h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 25px;">
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--inclass);">
+          <h4 style="color: var(--inclass); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">📤 Task 1 Upload</h4>
+          <p style="margin-bottom: 8px;">Progress report for your <strong>first</strong> checklist area</p>
+          <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">Include: Screenshot + Notes + Your Name</p>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--homework);">
+          <h4 style="color: var(--homework); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">📤 Task 2 Upload</h4>
+          <p style="margin-bottom: 8px;">Progress report for your <strong>second</strong> checklist area</p>
+          <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">Include: Screenshot + Notes + Your Name</p>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--secondary); color: white; padding: 18px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4); transition: all 0.3s ease;">
+          View Padlet W9 →
+        </a>
+      </div>
+    </div>
+
     <!-- Upload Instructions -->
-    <h2>How to Upload Your Work to Padlet</h2>
+    <h2>How to Upload to Padlet</h2>
 
     <div class="workflow-box" style="border-color: var(--quiz);">
       <div class="workflow-header" style="background: var(--quiz);">
@@ -1453,9 +1593,9 @@ p {
         
         <div class="step">
           <div class="step-number" style="background: var(--quiz);">4</div>
-          <div class="step-title" style="color: var(--quiz);">Check Your Upload</div>
+          <div class="step-title" style="color: var(--quiz);">Check Your Uploads</div>
           <div class="step-content">
-            <p>Make sure your image appears clearly before leaving the page. Your work won't be saved until you see it on the wall.</p>
+            <p>Make sure <strong>both</strong> Task 1 and Task 2 uploads appear clearly before leaving the page.</p>
           </div>
         </div>
       </div>
@@ -1465,37 +1605,10 @@ p {
       <h4>💡 Tips</h4>
       <ul>
         <li>Maximum file size is 25MB</li>
-        <li>Check your image appears clearly before leaving the page</li>
+        <li>You should have TWO separate uploads on Padlet</li>
+        <li>Label each clearly (e.g., "Your Name - Task 1" and "Your Name - Task 2")</li>
         <li>Your work won't be saved until you see it on the wall</li>
       </ul>
-    </div>
-
-    <!-- Final Submission -->
-    <div style="background: linear-gradient(135deg, var(--secondary-light) 0%, #fff 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--secondary);">
-      <h3 style="color: var(--secondary); text-align: center; margin-top: 0; margin-bottom: 25px;">Submit Your Documentation to Padlet</h3>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 25px;">
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--inclass);">
-          <h4 style="color: var(--inclass); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">1. Task 1</h4>
-          <p style="margin-bottom: 0;">Completed checklist game</p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--homework);">
-          <h4 style="color: var(--homework); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">2. Task 2</h4>
-          <p style="margin-bottom: 0;">Progress documentation screenshot</p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--quiz);">
-          <h4 style="color: var(--quiz); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">3. Your Name</h4>
-          <p style="margin-bottom: 0;">Add your full name as the title</p>
-        </div>
-      </div>
-
-      <div style="text-align: center;">
-        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--secondary); color: white; padding: 18px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4); transition: all 0.3s ease;">
-          Submit to Padlet W9 →
-        </a>
-      </div>
     </div>
 
     <div class="nav-buttons">

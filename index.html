@@ -1,445 +1,1694 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Checklist Game</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-            background-image:
-                linear-gradient(#20B2AA 1px, transparent 1px),
-                linear-gradient(90deg, #20B2AA 1px, transparent 1px),
-                linear-gradient(#FFB6C1 1px, transparent 1px),
-                linear-gradient(90deg, #FFB6C1 1px, transparent 1px),
-                linear-gradient(rgba(32, 178, 170, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(32, 178, 170, 0.3) 1px, transparent 1px);
-            background-size: 25px 25px;
-            color: #333;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio Checklist Game - Digital Skills W9</title>
+<style>
+:root {
+  --primary: #ea37a3;
+  --primary-light: #fdf1f5;
+  --secondary: #0a8080;
+  --secondary-light: #f5ffff;
+  --dark: #222;
+  --light: #fff;
+  --grid-light: #e0e0e0;
+  --homework: #ea37a3;
+  --homework-light: #fdf1f5;
+  --inclass: #0a8080;
+  --inclass-light: #f5ffff;
+  --homework-banner: #ffebf5;
+  --inclass-banner: #e6ffff;
+  --quiz: #4682b4;
+  --quiz-light: #f0f8ff;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        h1 {
-            font-size: 24px;
-            color: #20B2AA;
-            text-align: center;
-        }
+body {
+  font-family: "Typewriter Condensed", "Courier New", monospace;
+  background-image:
+    linear-gradient(var(--grid-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px;
+  background-attachment: fixed;
+  color: var(--dark);
+  padding: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.97);
+  border: 3px solid var(--primary);
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
 
-        li {
-            margin: 15px 0;
-            padding: 10px;
-            border: 2px solid #FFB6C1;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}
 
-        li.completed {
-            background-color: #20B2AA;
-            color: #ffffff;
-            border-color: #20B2AA;
-        }
+/* Block-based navigation */
+.content-section {
+  display: none;
+}
 
-        .checklist-item {
-            display: flex;
-            flex-direction: column;
-        }
+.content-section.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
 
-        .checklist-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-        .checklist-text {
-            flex-grow: 1;
-            padding-right: 10px;
-        }
+.main-navigation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 25px 0;
+}
 
-        .button-group {
-            display: flex;
-            gap: 5px;
-        }
+.nav-block {
+  background: #f8f8f8;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
-        button {
-            padding: 8px 12px;
-            background-color: #FFB6C1;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            white-space: nowrap;
-        }
+.nav-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
 
-        button:hover {
-            background-color: #FF69B4;
-        }
+.nav-block h3 {
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+  position: relative;
+  z-index: 2;
+}
 
-        .example-button {
-            background-color: #20B2AA;
-        }
+.nav-block p {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+  position: relative;
+  z-index: 2;
+}
 
-        .example-button:hover {
-            background-color: #178e8a;
-        }
+.nav-overview {
+  border-color: var(--secondary);
+  background-color: var(--secondary-light);
+}
 
-        .complete-message {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #20B2AA;
-            color: #ffffff;
-            border-radius: 5px;
-        }
+.nav-overview h3 {
+  color: var(--secondary);
+}
 
-        .complete-message.show {
-            display: block;
-        }
+.nav-task1 {
+  border-color: var(--inclass);
+  background-color: var(--inclass-light);
+}
 
-        .example-section {
-            margin-top: 10px;
-            display: none;
-        }
+.nav-task1 h3 {
+  color: var(--inclass);
+}
 
-        .example-section.show {
-            display: block;
-        }
+.nav-task2 {
+  border-color: var(--homework);
+  background-color: var(--homework-light);
+}
 
-        .example-image {
-            max-width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+.nav-task2 h3 {
+  color: var(--homework);
+}
 
-        .page-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+.nav-task3 {
+  border-color: var(--quiz);
+  background-color: var(--quiz-light);
+}
 
-        .tab-button {
-            padding: 10px 20px;
-            margin: 0 5px;
-            background-color: #f0f0f0;
-            border: 2px solid #20B2AA;
-            border-radius: 5px 5px 0 0;
-            cursor: pointer;
-            font-weight: bold;
-        }
+.nav-task3 h3 {
+  color: var(--quiz);
+}
 
-        .tab-button.active {
-            background-color: #20B2AA;
-            color: white;
-        }
+.active-block {
+  background-color: var(--secondary);
+  color: white;
+  box-shadow: 0 8px 20px rgba(10, 128, 128, 0.3);
+  transform: translateY(-5px);
+}
 
-        .page {
-            display: none;
-        }
+.active-block h3, .active-block p {
+  color: white;
+}
 
-        .page.active {
-            display: block;
-        }
-    </style>
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 20px;
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.prev-btn {
+  background-color: #f2f2f2;
+  color: #555;
+}
+
+.prev-btn::before {
+  content: "←";
+}
+
+.next-btn {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.next-btn::after {
+  content: "→";
+}
+
+.progress-bar-container {
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--secondary);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: "Typewriter Condensed", "Courier New", monospace;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.8em;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 15px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  color: var(--secondary);
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+h2::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 25px;
+  background: var(--primary);
+  margin-right: 15px;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+p {
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+  font-size: 1.1rem;
+}
+
+/* Workshop Overview Styling */
+.workshop-overview {
+  margin: 35px 0;
+  border-radius: 15px;
+  border: 3px solid var(--secondary);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: #f8f8f8;
+}
+
+.workshop-header {
+  background: var(--secondary);
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.workshop-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+}
+
+.workshop-title {
+  padding: 20px 25px 10px 25px;
+}
+
+.workshop-title h3 {
+  color: var(--secondary);
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 0 20px 0;
+  border-bottom: 2px dashed var(--secondary);
+  padding-bottom: 15px;
+}
+
+.workshop-content {
+  padding: 0 25px 25px 25px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.workshop-image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border: 3px solid white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.workshop-image:hover {
+  transform: scale(1.03);
+}
+
+.workshop-learning-points {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.learning-points-title {
+  color: var(--primary);
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  border-left: 5px solid var(--primary);
+  padding-left: 15px;
+}
+
+.learning-points-list {
+  list-style-type: none;
+  padding-left: 5px;
+}
+
+.learning-points-item {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.learning-points-item::before {
+  content: "•";
+  color: var(--primary);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* Term explanation box */
+.term-box {
+  background: #f8f9fa;
+  border-left: 6px solid #17a2b8;
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-size: 1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.term-box strong {
+  color: #17a2b8;
+}
+
+.term-box ul {
+  margin-left: 25px;
+  margin-top: 10px;
+}
+
+.term-box li {
+  margin-bottom: 8px;
+}
+
+/* Important notice */
+.important-notice {
+  margin-bottom: 20px; 
+  padding: 15px 20px; 
+  background: rgba(234, 55, 163, 0.15); 
+  border-left: 5px solid var(--primary); 
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.important-notice strong {
+  color: var(--primary);
+}
+
+/* Shortcut */
+.shortcut {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 1em;
+  margin: 0 2px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* Workflow box */
+.workflow-box {
+  background: #f8f8f8;
+  margin: 35px 0;
+  border-radius: 15px;
+  border: 3px solid var(--secondary);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.workflow-header {
+  background: var(--secondary);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.workflow-header h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.workflow-steps {
+  padding: 20px 25px;
+}
+
+.step {
+  position: relative;
+  padding: 20px 20px 20px 50px;
+  background: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.step-number {
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.step-title {
+  color: var(--primary);
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.step-content ul, .step-content ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.step-content li {
+  margin-bottom: 8px;
+}
+
+/* Section banners */
+.section-banner {
+  margin: 25px 0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+}
+
+.inclass-banner {
+  background-color: var(--inclass-banner);
+  border: 2px solid var(--inclass);
+  color: var(--inclass);
+}
+
+.inclass-banner::before {
+  background-color: var(--inclass);
+}
+
+.homework-banner {
+  background-color: var(--homework-banner);
+  border: 2px solid var(--homework);
+  color: var(--homework);
+}
+
+.homework-banner::before {
+  background-color: var(--homework);
+}
+
+.quiz-banner {
+  background-color: var(--quiz-light);
+  border: 2px solid var(--quiz);
+  color: var(--quiz);
+}
+
+.quiz-banner::before {
+  background-color: var(--quiz);
+}
+
+.inclass-label, .task-label {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: 15px;
+  vertical-align: middle;
+}
+
+.inclass-label {
+  background-color: var(--inclass);
+  color: white;
+}
+
+.task-label {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Tip box */
+.tip-box {
+  background: linear-gradient(135deg, #e8f5e9 0%, #fff 100%);
+  border: 2px solid #28a745;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.tip-box h4 {
+  color: #28a745;
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.tip-box p {
+  margin-bottom: 10px;
+}
+
+/* Reminder box */
+.reminder-box {
+  background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
+  border: 2px solid #1976d2;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.reminder-box h4 {
+  color: #1976d2;
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.reminder-box ul {
+  margin-left: 20px;
+}
+
+.reminder-box li {
+  margin-bottom: 8px;
+}
+
+/* Harvard Reference Box */
+.reference-box {
+  background: linear-gradient(135deg, #fff3e0 0%, #fff 100%);
+  border: 2px solid #ff9800;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.reference-box h4 {
+  color: #ff9800;
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.reference-box code {
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: block;
+  margin: 10px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  border-left: 4px solid #ff9800;
+}
+
+/* Modal for image viewing */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  overflow: auto;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid white;
+  border-radius: 5px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  z-index: 1001;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ==================== CHECKLIST GAME STYLES ==================== */
+.checklist-game-container {
+  background: #f8f8f8;
+  border-radius: 15px;
+  border: 3px solid var(--secondary);
+  overflow: hidden;
+  margin: 30px 0;
+}
+
+.checklist-game-header {
+  background: var(--secondary);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checklist-game-header h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.checklist-progress {
+  background: rgba(255,255,255,0.3);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.checklist-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  background: white;
+}
+
+.checklist-tab {
+  flex: 1;
+  padding: 15px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border: none;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.checklist-tab:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.checklist-tab.active {
+  background: var(--secondary);
+  color: white;
+}
+
+.checklist-tab:hover:not(.active) {
+  background: #e0e0e0;
+}
+
+.checklist-page {
+  display: none;
+  padding: 20px;
+}
+
+.checklist-page.active {
+  display: block;
+}
+
+.checklist-item-game {
+  background: white;
+  border: 2px solid #FFB6C1;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.checklist-item-game.completed {
+  border-color: var(--secondary);
+  background: linear-gradient(135deg, var(--secondary-light) 0%, white 100%);
+}
+
+.checklist-item-game.completed .checklist-item-top {
+  background: var(--secondary);
+}
+
+.checklist-item-game.completed .checklist-item-top span {
+  color: white;
+}
+
+.checklist-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #fdf1f5;
+  gap: 15px;
+}
+
+.checklist-item-top span {
+  flex: 1;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.checklist-item-top a {
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.example-btn, .complete-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.example-btn {
+  background: var(--secondary);
+  color: white;
+}
+
+.example-btn:hover {
+  background: #086868;
+}
+
+.complete-btn {
+  background: #FFB6C1;
+  color: white;
+}
+
+.complete-btn:hover {
+  background: #FF69B4;
+}
+
+.example-content {
+  display: none;
+  padding: 15px 20px;
+  background: #f9f9f9;
+  border-top: 1px dashed #ddd;
+}
+
+.example-content.show {
+  display: block;
+}
+
+.example-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.completion-message {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--secondary) 0%, #086868 100%);
+  color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 1.3rem;
+}
+
+.completion-message.show {
+  display: block;
+  animation: celebrate 0.5s ease;
+}
+
+@keyframes celebrate {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Print button */
+.print-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.print-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+@media print {
+  .print-button {
+    display: none;
+  }
+  
+  body {
+    background: white;
+  }
+  
+  .container {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .workshop-content {
+    grid-template-columns: 1fr;
+  }
+  .workflow-steps {
+    padding: 15px;
+  }
+  .step {
+    padding: 15px 15px 15px 40px;
+  }
+  .step-number {
+    width: 32px;
+    height: 32px;
+    left: -5px;
+    font-size: 1rem;
+  }
+  .checklist-item-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .button-group {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .button-group button {
+    flex: 1;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Portfolio Checklist Game</h1>
-        
-        <div class="page-tabs">
-            <button class="tab-button active" onclick="showPage('introPage')">Introduction Checklist</button>
-            <button class="tab-button" onclick="showPage('mainPage')">Main Checklist</button>
+
+<div class="container">
+  <h1>W9: Portfolio Checklist Game and Document Your Practice</h1>
+  <p style="text-align: center; font-size: 1.2rem; color: #666;">Ensure Your Portfolio Meets Assessment Criteria</p>
+
+  <!-- Workshop Structure Overview -->
+  <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px dashed #666;">
+    <h3 style="text-align: center; margin-top: 0; color: #333;">What You Will Learn</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 15px;">
+      <div style="flex: 1; min-width: 200px; background: var(--inclass-banner); padding: 15px; border-radius: 8px; border-left: 5px solid var(--inclass);">
+        <h4 style="margin-top: 0; color: var(--inclass);">TASK 1</h4>
+        <p style="margin-bottom: 0;">Portfolio Checklist Game (1 hr)</p>
+      </div>
+      <div style="flex: 1; min-width: 200px; background: var(--homework-banner); padding: 15px; border-radius: 8px; border-left: 5px solid var(--homework);">
+        <h4 style="margin-top: 0; color: var(--homework);">TASK 2</h4>
+        <p style="margin-bottom: 0;">Document Your Progress (30-45 mins)</p>
+      </div>
+      <div style="flex: 1; min-width: 200px; background: var(--quiz-light); padding: 15px; border-radius: 8px; border-left: 5px solid var(--quiz);">
+        <h4 style="margin-top: 0; color: var(--quiz);">TASK 3</h4>
+        <p style="margin-bottom: 0;">Upload to Padlet</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Block-based navigation -->
+  <div class="main-navigation">
+    <div class="nav-block nav-overview" data-section="overview">
+      <h3>Overview</h3>
+      <p>Introduction</p>
+    </div>
+    <div class="nav-block nav-task1" data-section="task1">
+      <h3>Task 1</h3>
+      <p>Checklist Game</p>
+    </div>
+    <div class="nav-block nav-task2" data-section="task2">
+      <h3>Task 2</h3>
+      <p>Document Progress</p>
+    </div>
+    <div class="nav-block nav-task3" data-section="task3">
+      <h3>Task 3</h3>
+      <p>Submit Work</p>
+    </div>
+  </div>
+  
+  <!-- ==================== OVERVIEW SECTION ==================== -->
+  <div id="overview" class="content-section active">
+    <div class="workshop-overview">
+      <div class="workshop-header">
+        <h3>Workshop Overview</h3>
+      </div>
+      
+      <div class="workshop-title">
+        <h3>Key Considerations for Your Portfolio</h3>
+      </div>
+      
+      <div class="workshop-content">
+        <div>
+          <p><strong>Objective:</strong> This session is about ensuring your portfolio meets the assessment criteria and tells your story clearly and creatively.</p>
+          <p>You will work through a checklist game to review key areas of your portfolio, then document your progress with screenshots and reflection notes.</p>
         </div>
         
-        <!-- Introduction Page Checklist -->
-        <div id="introPage" class="page active">
-            <ul id="introChecklist">
-                <li data-example="./examples/intro_title_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Project Title: Does your introduction have a clear, engaging title that reflects your project?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good introduction title">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/intro_context_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Project Context: Have you clearly explained the background and context of your project?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good context explanation">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/intro_visual_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Visual Interest: Does your introduction include imagery that captures attention and helps visualise your theme?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good visual interest">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/intro_flow_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Portfolio Roadmap: Does your introduction provide a clear roadmap of what follows?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good portfolio roadmap">
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            
-            <div id="introCompleteMessage" class="complete-message">
-                🎉 Great job! You've completed the Introduction Page checklist! 🎉
-            </div>
+        <div class="workshop-learning-points">
+          <h4 class="learning-points-title">You Will Learn To:</h4>
+          <ul class="learning-points-list">
+            <li class="learning-points-item">Review portfolio against criteria</li>
+            <li class="learning-points-item">Identify areas for improvement</li>
+            <li class="learning-points-item">Reference sources correctly</li>
+            <li class="learning-points-item">Document your creative process</li>
+            <li class="learning-points-item">Reflect on your work</li>
+          </ul>
         </div>
-        
-        <!-- Main Checklist Page -->
-        <div id="mainPage" class="page">
-            <ul id="checklist">
-                <li data-example="./examples/subheadings_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Subheadings: Are subheadings relevant and help define what aspect of research you're exploring to expand creative ideas?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good subheadings & layout">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/research_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Research & Inspiration: Do your pages show diverse research sources and your own responses to what you've found?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good research & inspiration">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/design_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Design Development:Do you show both 2D and 3D ideas with research links and a mix of whole designs and detail elements?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good design development">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/refinement_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Refinement & Selection: Do you show a selecting and editing process with various similar but different ideas, including ticks to decide what design ideas you want to further develop?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good refinement & selection">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/referencing_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Referencing: Have you properly credited your sources?
-                                <a href="https://hsstokes.github.io/Harvard-Referencing-Guide/" target="_blank">(Harvard Referencing Guide)</a>
-                            </span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good referencing">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/color_palette_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Colour Palette: Have you selected a relevant palette and included research links to support your ideas?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good color palette">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/typography_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Typography: Is your font choice consistent, creative and appropriate for your theme?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good typography">
-                        </div>
-                    </div>
-                </li>
-                
-                <li data-example="./examples/visual_elements_example.jpg">
-                    <div class="checklist-item">
-                        <div class="checklist-top">
-                            <span class="checklist-text">Visual Elements: Do your illustrations, photographs, and diagrams enhance your message?</span>
-                            <div class="button-group">
-                                <button class="example-button" onclick="toggleExample(this)">Example</button>
-                                <button onclick="markAsComplete(this)">Complete</button>
-                            </div>
-                        </div>
-                        <div class="example-section">
-                            <img class="example-image" src="" alt="Example of good visual elements">
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            
-            <div id="completeMessage" class="complete-message">
-                🎉 Great job! You've completed the checklist! 🎉
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script>
-        function markAsComplete(button) {
-            const listItem = button.closest('li');
-            listItem.classList.add('completed');
-            button.remove();
+    <!-- Harvard Referencing Recap -->
+    <h2>Recap: How to Reference an Artist</h2>
+    
+    <div class="reference-box">
+      <h4>📚 Harvard Referencing Style for Images</h4>
+      <p>Have you properly credited your sources? Use this format for citing artists:</p>
+      <p><strong>Format:</strong></p>
+      <code>Artist's Last Name, First Initial. (Year). <em>Title of the work</em> [Image].</code>
+      <p><strong>Example:</strong></p>
+      <code>Turner, L. (2018). <em>Abstract concepts in digital art</em> [Image].</code>
+    </div>
 
-            // Determine which checklist to check
-            const page = button.closest('.page');
-            if (page.id === 'introPage') {
-                checkIntroCompleted();
-            } else {
-                checkMainCompleted();
-            }
-        }
+    <div class="important-notice">
+      <strong>Important:</strong> Proper referencing shows your research skills and respects the work of other artists and designers.
+    </div>
 
-        function toggleExample(button) {
-            const listItem = button.closest('li');
-            const exampleSection = listItem.querySelector('.example-section');
-            const exampleImage = listItem.querySelector('.example-image');
-            
-            if (exampleSection.classList.contains('show')) {
-                exampleSection.classList.remove('show');
-            } else {
-                // Set the image source from the data attribute
-                const imagePath = listItem.getAttribute('data-example');
-                exampleImage.src = imagePath;
-                
-                exampleSection.classList.add('show');
-            }
-        }
+    <div class="nav-buttons">
+      <button class="nav-btn prev-btn" disabled>Previous</button>
+      <button class="nav-btn next-btn" onclick="goToSection('task1')">Next: Task 1</button>
+    </div>
+  </div>
 
-        function checkMainCompleted() {
-            const allItems = document.querySelectorAll('#checklist li');
-            const completedItems = document.querySelectorAll('#checklist li.completed');
+  <!-- ==================== TASK 1: PORTFOLIO CHECKLIST GAME ==================== -->
+  <div id="task1" class="content-section">
+    <div class="section-banner inclass-banner">
+      TASK 1: Portfolio Checklist Game (1 hour)
+    </div>
 
-            if (allItems.length === completedItems.length) {
-                document.getElementById('completeMessage').classList.add('show');
-            }
-        }
+    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
+      Work through the checklist step by step. Click "Example" to see what good work looks like, then click "Complete" when you've checked that area of your portfolio.
+    </p>
 
-        function checkIntroCompleted() {
-            const allItems = document.querySelectorAll('#introChecklist li');
-            const completedItems = document.querySelectorAll('#introChecklist li.completed');
+    <!-- Checklist Game -->
+    <div class="checklist-game-container">
+      <div class="checklist-game-header">
+        <h3>Portfolio Checklist Game</h3>
+        <span class="checklist-progress" id="checklistProgress">0 / 12 Complete</span>
+      </div>
 
-            if (allItems.length === completedItems.length) {
-                document.getElementById('introCompleteMessage').classList.add('show');
-            }
-        }
+      <!-- Tabs -->
+      <div class="checklist-tabs">
+        <button class="checklist-tab active" onclick="showChecklistPage('introChecklist')">Introduction Page</button>
+        <button class="checklist-tab" onclick="showChecklistPage('mainChecklist')">Main Checklist</button>
+      </div>
 
-        function showPage(pageId) {
-            // Update tab buttons
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-            
-            // Find the button that triggered this and make it active
-            if (pageId === 'introPage') {
-                document.querySelectorAll('.tab-button')[0].classList.add('active');
-            } else {
-                document.querySelectorAll('.tab-button')[1].classList.add('active');
-            }
-            
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
+      <!-- Introduction Page Checklist -->
+      <div id="introChecklist" class="checklist-page active">
+        <div class="checklist-item-game" data-example="intro-title">
+          <div class="checklist-item-top">
+            <span><strong>Project Title:</strong> Does your introduction have a clear, engaging title that reflects your project?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>A good project title should:</strong></p>
+            <ul>
+              <li>Be creative and memorable</li>
+              <li>Reflect your theme or concept</li>
+              <li>Set the tone for your portfolio</li>
+            </ul>
+            <img src="examples/intro_title_example.jpg" alt="Example of good introduction title" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="intro-context">
+          <div class="checklist-item-top">
+            <span><strong>Project Context:</strong> Have you clearly explained the background and context of your project?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Context should include:</strong></p>
+            <ul>
+              <li>What inspired your project</li>
+              <li>The problem or theme you're exploring</li>
+              <li>Your personal connection to the subject</li>
+            </ul>
+            <img src="examples/intro_context_example.jpg" alt="Example of good context explanation" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="intro-visual">
+          <div class="checklist-item-top">
+            <span><strong>Visual Interest:</strong> Does your introduction include imagery that captures attention and helps visualise your theme?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Strong visuals should:</strong></p>
+            <ul>
+              <li>Create immediate impact</li>
+              <li>Relate to your theme</li>
+              <li>Be high quality images</li>
+            </ul>
+            <img src="examples/intro_visual_example.jpg" alt="Example of good visual interest" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="intro-roadmap">
+          <div class="checklist-item-top">
+            <span><strong>Portfolio Roadmap:</strong> Does your introduction provide a clear roadmap of what follows?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>A roadmap helps the viewer:</strong></p>
+            <ul>
+              <li>Understand the structure of your portfolio</li>
+              <li>Know what to expect</li>
+              <li>Navigate your work easily</li>
+            </ul>
+            <img src="examples/intro_flow_example.jpg" alt="Example of good portfolio roadmap" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div id="introCompleteMessage" class="completion-message">
+          🎉 Great job! You've completed the Introduction Page checklist! 🎉
+        </div>
+      </div>
+
+      <!-- Main Checklist -->
+      <div id="mainChecklist" class="checklist-page">
+        <div class="checklist-item-game" data-example="subheadings">
+          <div class="checklist-item-top">
+            <span><strong>Subheadings & Layout:</strong> Are subheadings clear, concise, and creative? Have you included graphic elements?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Good subheadings:</strong></p>
+            <ul>
+              <li>Define what aspect of research you're exploring</li>
+              <li>Help expand creative ideas</li>
+              <li>Include visual hierarchy</li>
+            </ul>
+            <img src="examples/subheadings_example.jpg" alt="Example of good subheadings & layout" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="research">
+          <div class="checklist-item-top">
+            <span><strong>Research & Inspiration:</strong> Have you included quotes to support your knowledge?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Strong research pages show:</strong></p>
+            <ul>
+              <li>Diverse research sources</li>
+              <li>Your own responses to what you've found</li>
+              <li>Quotes that support your ideas</li>
+            </ul>
+            <img src="examples/research_example.jpg" alt="Example of good research & inspiration" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="design">
+          <div class="checklist-item-top">
+            <span><strong>Design Development:</strong> Do your pages show a relationship between 2D and 3D ideas? Have you included research links to support your design development?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Design development should include:</strong></p>
+            <ul>
+              <li>Both 2D and 3D ideas</li>
+              <li>A mix of whole designs and detail elements</li>
+              <li>Research links supporting development</li>
+            </ul>
+            <img src="examples/design_example.jpg" alt="Example of good design development" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="refinement">
+          <div class="checklist-item-top">
+            <span><strong>Refinement & Selection:</strong> Do you show a variety of similar but different design ideas from which to select, edit, and inform your final lineup?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Refinement pages should show:</strong></p>
+            <ul>
+              <li>A selecting and editing process</li>
+              <li>Various similar but different ideas</li>
+              <li>Ticks or marks to show decisions</li>
+            </ul>
+            <img src="examples/refinement_example.jpg" alt="Example of good refinement & selection" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="referencing">
+          <div class="checklist-item-top">
+            <span><strong>Referencing:</strong> Have you properly credited your sources? <a href="https://hsstokes.github.io/Harvard-Referencing-Guide/" target="_blank">(Harvard Referencing Guide)</a></span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Proper referencing includes:</strong></p>
+            <ul>
+              <li>Artist name and year</li>
+              <li>Title of work in italics</li>
+              <li>[Image] designation</li>
+            </ul>
+            <img src="examples/referencing_example.jpg" alt="Example of good referencing" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="color">
+          <div class="checklist-item-top">
+            <span><strong>Colour Palette:</strong> Have you selected a relevant palette and included research links to support your ideas?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>A strong colour palette:</strong></p>
+            <ul>
+              <li>Connects to your research theme</li>
+              <li>Shows colour theory understanding</li>
+              <li>Links to inspiration sources</li>
+            </ul>
+            <img src="examples/color_palette_example.jpg" alt="Example of good color palette" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="typography">
+          <div class="checklist-item-top">
+            <span><strong>Typography:</strong> Is your font choice consistent, creative and appropriate for your theme?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Good typography:</strong></p>
+            <ul>
+              <li>Is consistent throughout</li>
+              <li>Reflects your project theme</li>
+              <li>Is readable and well-sized</li>
+            </ul>
+            <img src="examples/typography_example.jpg" alt="Example of good typography" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div class="checklist-item-game" data-example="visuals">
+          <div class="checklist-item-top">
+            <span><strong>Visual Elements:</strong> Do your illustrations, photographs, and diagrams enhance your message?</span>
+            <div class="button-group">
+              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
+              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
+            </div>
+          </div>
+          <div class="example-content">
+            <p><strong>Strong visual elements:</strong></p>
+            <ul>
+              <li>Support and enhance your content</li>
+              <li>Are high quality</li>
+              <li>Create visual interest</li>
+            </ul>
+            <img src="examples/visual_elements_example.jpg" alt="Example of good visual elements" onclick="openModal(this.src)">
+          </div>
+        </div>
+
+        <div id="mainCompleteMessage" class="completion-message">
+          🎉 Excellent! You've completed the Main Checklist! 🎉
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 Pro Tip</h4>
+      <p>Don't rush through the checklist! Take time to actually review each area of your portfolio and make improvements as you go.</p>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn prev-btn" onclick="goToSection('overview')">Previous: Overview</button>
+      <button class="nav-btn next-btn" onclick="goToSection('task2')">Next: Task 2</button>
+    </div>
+  </div>
+
+  <!-- ==================== TASK 2: DOCUMENT YOUR PROGRESS ==================== -->
+  <div id="task2" class="content-section">
+    <div class="section-banner homework-banner">
+      TASK 2: Document Your Progress (30-45 Minutes)
+    </div>
+
+    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
+      Capture screenshots and write notes about your progress for each checklist area.
+    </p>
+
+    <!-- How to Document -->
+    <h2>How to Document Your Practice</h2>
+
+    <div class="workflow-box" style="border-color: var(--homework);">
+      <div class="workflow-header" style="background: var(--homework);">
+        <h3>Step-by-Step Documentation</h3>
+      </div>
+      <div class="workflow-steps">
+        <div class="step">
+          <div class="step-number" style="background: var(--homework);">1</div>
+          <div class="step-title" style="color: var(--homework);">Add Progress Screenshots</div>
+          <div class="step-content">
+            <p>Use the upload button below to add screenshots showing your progress in each area:</p>
+            <ul>
+              <li>Subheadings & Layout</li>
+              <li>Research & Inspiration</li>
+              <li>Design Development</li>
+              <li>Refinement & Selection</li>
+              <li>Referencing</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--homework);">2</div>
+          <div class="step-title" style="color: var(--homework);">Write Your Notes</div>
+          <div class="step-content">
+            <p>For each screenshot, write concise notes:</p>
+            <ul>
+              <li>What changes did you make?</li>
+              <li>What worked well?</li>
+              <li>What needs improvement?</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--homework);">3</div>
+          <div class="step-title" style="color: var(--homework);">Take Final Screenshot</div>
+          <div class="step-content">
+            <p>Take a screenshot of your completed documentation:</p>
+            <ul>
+              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span> for full screen</li>
+              <li><strong>Windows:</strong> Press <span class="shortcut">Windows + Shift + S</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--homework);">4</div>
+          <div class="step-title" style="color: var(--homework);">Upload to Padlet</div>
+          <div class="step-content">
+            <p>Submit your final screenshot to Padlet for review.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Documentation Tool Link -->
+    <div style="background: var(--homework-light); padding: 25px; border-radius: 12px; border: 2px solid var(--homework); margin: 30px 0; text-align: center;">
+      <h3 style="color: var(--homework); margin-top: 0;">📸 Progress Documentation Tool</h3>
+      <p>Use this interactive tool to capture and organise your progress screenshots with notes.</p>
+      <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" style="display: inline-block; background: var(--homework); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 10px;">
+        Open Progress Tool →
+      </a>
+    </div>
+
+    <div class="reminder-box">
+      <h4>📋 Documentation Should Include:</h4>
+      <ul>
+        <li>Screenshots from each checklist area</li>
+        <li>Brief notes on what you changed</li>
+        <li>Reflection on what worked and what didn't</li>
+        <li>Final screenshot of completed documentation</li>
+      </ul>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn prev-btn" onclick="goToSection('task1')">Previous: Task 1</button>
+      <button class="nav-btn next-btn" onclick="goToSection('task3')">Next: Task 3</button>
+    </div>
+  </div>
+
+  <!-- ==================== TASK 3: SUBMIT WORK ==================== -->
+  <div id="task3" class="content-section">
+    <div class="section-banner quiz-banner">
+      TASK 3: Upload Your Work to Padlet
+    </div>
+
+    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
+      Submit your completed documentation to the Term 2 Padlet Wall.
+    </p>
+
+    <!-- Upload Instructions -->
+    <h2>How to Upload Your Work to Padlet</h2>
+
+    <div class="workflow-box" style="border-color: var(--quiz);">
+      <div class="workflow-header" style="background: var(--quiz);">
+        <h3>Upload Instructions</h3>
+      </div>
+      <div class="workflow-steps">
+        <div class="step">
+          <div class="step-number" style="background: var(--quiz);">1</div>
+          <div class="step-title" style="color: var(--quiz);">Click the + (Plus) Button</div>
+          <div class="step-content">
+            <p>Select "Upload" or drag your file directly onto the wall.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--quiz);">2</div>
+          <div class="step-title" style="color: var(--quiz);">Save as JPEG</div>
+          <div class="step-content">
+            <p><strong>Important:</strong> Save your work in JPEG format before uploading.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--quiz);">3</div>
+          <div class="step-title" style="color: var(--quiz);">Add Your Name</div>
+          <div class="step-content">
+            <p>After upload, click the title space above your image and type your full name as the title.</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--quiz);">4</div>
+          <div class="step-title" style="color: var(--quiz);">Check Your Upload</div>
+          <div class="step-content">
+            <p>Make sure your image appears clearly before leaving the page. Your work won't be saved until you see it on the wall.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 Tips</h4>
+      <ul>
+        <li>Maximum file size is 25MB</li>
+        <li>Check your image appears clearly before leaving the page</li>
+        <li>Your work won't be saved until you see it on the wall</li>
+      </ul>
+    </div>
+
+    <!-- Final Submission -->
+    <div style="background: linear-gradient(135deg, var(--secondary-light) 0%, #fff 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--secondary);">
+      <h3 style="color: var(--secondary); text-align: center; margin-top: 0; margin-bottom: 25px;">Submit Your Documentation to Padlet</h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-bottom: 25px;">
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--inclass);">
+          <h4 style="color: var(--inclass); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">1. Task 1</h4>
+          <p style="margin-bottom: 0;">Completed checklist game</p>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--homework);">
+          <h4 style="color: var(--homework); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">2. Task 2</h4>
+          <p style="margin-bottom: 0;">Progress documentation screenshot</p>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--quiz);">
+          <h4 style="color: var(--quiz); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">3. Your Name</h4>
+          <p style="margin-bottom: 0;">Add your full name as the title</p>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <a href="https://artslondon.padlet.org/hstokes12/term-2-padlet-wall-w9" target="_blank" style="display: inline-block; background: var(--secondary); color: white; padding: 18px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4); transition: all 0.3s ease;">
+          Submit to Padlet W9 →
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn prev-btn" onclick="goToSection('task2')">Previous: Task 2</button>
+      <button class="nav-btn next-btn" onclick="goToSection('overview')">Back to Start</button>
+    </div>
+  </div>
+
+  <!-- Modal for image viewing -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+</div>
+
+<button class="print-button" onclick="window.print()">🖨️</button>
+
+<script>
+// Image Modal Functionality
+function openModal(src) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modal.style.display = "block";
+  modalImg.src = src;
+}
+
+// Section Navigation
+const sections = ['overview', 'task1', 'task2', 'task3'];
+let currentSection = 'overview';
+
+function goToSection(sectionId) {
+  if (!sectionId) return;
+  
+  // Hide all sections
+  document.querySelectorAll('.content-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  // Show the selected section
+  document.getElementById(sectionId).classList.add('active');
+  
+  // Update active navigation block
+  document.querySelectorAll('.nav-block').forEach(block => {
+    block.classList.remove('active-block');
+    if (block.dataset.section === sectionId) {
+      block.classList.add('active-block');
+    }
+  });
+  
+  // Update current section
+  currentSection = sectionId;
+  
+  // Update progress bar
+  updateProgressBar();
+  
+  // Scroll to top
+  window.scrollTo(0, 0);
+}
+
+function updateProgressBar() {
+  const progressBar = document.getElementById('progressBar');
+  const index = sections.indexOf(currentSection);
+  const percentage = ((index + 1) / sections.length) * 100;
+  progressBar.style.width = `${percentage}%`;
+}
+
+// Checklist Game Functions
+function showChecklistPage(pageId) {
+  // Update tab buttons
+  document.querySelectorAll('.checklist-tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  event.target.classList.add('active');
+  
+  // Hide all pages
+  document.querySelectorAll('.checklist-page').forEach(page => {
+    page.classList.remove('active');
+  });
+  
+  // Show selected page
+  document.getElementById(pageId).classList.add('active');
+}
+
+function toggleGameExample(button) {
+  const item = button.closest('.checklist-item-game');
+  const exampleContent = item.querySelector('.example-content');
+  
+  if (exampleContent.classList.contains('show')) {
+    exampleContent.classList.remove('show');
+    button.textContent = 'Example';
+  } else {
+    exampleContent.classList.add('show');
+    button.textContent = 'Hide';
+  }
+}
+
+function markGameComplete(button) {
+  const item = button.closest('.checklist-item-game');
+  item.classList.add('completed');
+  button.remove();
+  
+  // Update progress
+  updateChecklistProgress();
+  
+  // Check if page is complete
+  checkPageCompletion();
+  
+  // Save state
+  saveChecklistState();
+}
+
+function updateChecklistProgress() {
+  const totalItems = document.querySelectorAll('.checklist-item-game').length;
+  const completedItems = document.querySelectorAll('.checklist-item-game.completed').length;
+  
+  document.getElementById('checklistProgress').textContent = `${completedItems} / ${totalItems} Complete`;
+}
+
+function checkPageCompletion() {
+  // Check intro page
+  const introItems = document.querySelectorAll('#introChecklist .checklist-item-game');
+  const introCompleted = document.querySelectorAll('#introChecklist .checklist-item-game.completed');
+  
+  if (introItems.length === introCompleted.length && introItems.length > 0) {
+    document.getElementById('introCompleteMessage').classList.add('show');
+  }
+  
+  // Check main page
+  const mainItems = document.querySelectorAll('#mainChecklist .checklist-item-game');
+  const mainCompleted = document.querySelectorAll('#mainChecklist .checklist-item-game.completed');
+  
+  if (mainItems.length === mainCompleted.length && mainItems.length > 0) {
+    document.getElementById('mainCompleteMessage').classList.add('show');
+  }
+}
+
+function saveChecklistState() {
+  const completedItems = [];
+  document.querySelectorAll('.checklist-item-game.completed').forEach(item => {
+    completedItems.push(item.dataset.example);
+  });
+  localStorage.setItem('portfolio-checklist-state', JSON.stringify(completedItems));
+}
+
+function loadChecklistState() {
+  const savedState = localStorage.getItem('portfolio-checklist-state');
+  if (savedState) {
+    const completedItems = JSON.parse(savedState);
+    completedItems.forEach(example => {
+      const item = document.querySelector(`.checklist-item-game[data-example="${example}"]`);
+      if (item && !item.classList.contains('completed')) {
+        item.classList.add('completed');
+        const completeBtn = item.querySelector('.complete-btn');
+        if (completeBtn) completeBtn.remove();
+      }
+    });
+    updateChecklistProgress();
+    checkPageCompletion();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('imageModal');
+  const closeBtn = document.getElementsByClassName('close')[0];
+  
+  // Close modal when clicking the × symbol
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = "none";
+    });
+  }
+  
+  // Close modal when clicking outside the image
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+  
+  // Set up navigation blocks
+  document.querySelectorAll('.nav-block').forEach(block => {
+    block.addEventListener('click', () => {
+      goToSection(block.dataset.section);
+    });
+  });
+  
+  // Initialize progress bar and active section
+  document.querySelector('.nav-block[data-section="overview"]').classList.add('active-block');
+  updateProgressBar();
+  
+  // Load saved checklist state
+  loadChecklistState();
+});
+</script>
+
 </body>
 </html>

@@ -19,8 +19,6 @@
   --inclass-light: #f5ffff;
   --homework-banner: #ffebf5;
   --inclass-banner: #e6ffff;
-  --quiz: #4682b4;
-  --quiz-light: #f0f8ff;
   --final: #ff6b35;
   --final-light: #fff4f0;
 }
@@ -60,7 +58,6 @@ body {
   }
 }
 
-/* Block-based navigation */
 .content-section {
   display: none;
 }
@@ -147,20 +144,11 @@ body {
 }
 
 .nav-task3 {
-  border-color: var(--quiz);
-  background-color: var(--quiz-light);
-}
-
-.nav-task3 h3 {
-  color: var(--quiz);
-}
-
-.nav-task4 {
   border-color: var(--final);
   background-color: var(--final-light);
 }
 
-.nav-task4 h3 {
+.nav-task3 h3 {
   color: var(--final);
 }
 
@@ -232,7 +220,6 @@ body {
   transition: width 0.3s ease;
 }
 
-/* Typography */
 h1, h2, h3 {
   font-family: "Typewriter Condensed", "Courier New", monospace;
   letter-spacing: 0.5px;
@@ -281,7 +268,6 @@ p {
   font-size: 1.1rem;
 }
 
-/* Workshop Overview Styling */
 .workshop-overview {
   margin: 35px 0;
   border-radius: 15px;
@@ -326,21 +312,6 @@ p {
   align-items: start;
 }
 
-.workshop-image {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  border: 3px solid white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  max-height: 400px;
-  object-fit: contain;
-}
-
-.workshop-image:hover {
-  transform: scale(1.03);
-}
-
 .workshop-learning-points {
   background: white;
   border-radius: 10px;
@@ -376,31 +347,6 @@ p {
   font-weight: bold;
 }
 
-/* Term explanation box */
-.term-box {
-  background: #f8f9fa;
-  border-left: 6px solid #17a2b8;
-  padding: 15px 20px;
-  margin: 20px 0;
-  font-size: 1rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-  border-radius: 0 8px 8px 0;
-}
-
-.term-box strong {
-  color: #17a2b8;
-}
-
-.term-box ul {
-  margin-left: 25px;
-  margin-top: 10px;
-}
-
-.term-box li {
-  margin-bottom: 8px;
-}
-
-/* Important notice */
 .important-notice {
   margin-bottom: 20px; 
   padding: 15px 20px; 
@@ -414,7 +360,6 @@ p {
   color: var(--primary);
 }
 
-/* Shortcut */
 .shortcut {
   display: inline-block;
   padding: 3px 10px;
@@ -427,7 +372,6 @@ p {
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
-/* Workflow box */
 .workflow-box {
   background: #f8f8f8;
   margin: 35px 0;
@@ -497,7 +441,6 @@ p {
   margin-bottom: 8px;
 }
 
-/* Section banners */
 .section-banner {
   margin: 25px 0;
   padding: 15px 20px;
@@ -539,16 +482,6 @@ p {
   background-color: var(--homework);
 }
 
-.quiz-banner {
-  background-color: var(--quiz-light);
-  border: 2px solid var(--quiz);
-  color: var(--quiz);
-}
-
-.quiz-banner::before {
-  background-color: var(--quiz);
-}
-
 .final-banner {
   background-color: var(--final-light);
   border: 2px solid var(--final);
@@ -559,27 +492,6 @@ p {
   background-color: var(--final);
 }
 
-.inclass-label, .task-label {
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-left: 15px;
-  vertical-align: middle;
-}
-
-.inclass-label {
-  background-color: var(--inclass);
-  color: white;
-}
-
-.task-label {
-  background-color: var(--primary);
-  color: white;
-}
-
-/* Tip box */
 .tip-box {
   background: linear-gradient(135deg, #e8f5e9 0%, #fff 100%);
   border: 2px solid #28a745;
@@ -600,7 +512,6 @@ p {
   margin-bottom: 10px;
 }
 
-/* Reminder box */
 .reminder-box {
   background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
   border: 2px solid #1976d2;
@@ -625,7 +536,6 @@ p {
   margin-bottom: 8px;
 }
 
-/* Harvard Reference Box */
 .reference-box {
   background: linear-gradient(135deg, #fff3e0 0%, #fff 100%);
   border: 2px solid #ff9800;
@@ -653,7 +563,6 @@ p {
   border-left: 4px solid #ff9800;
 }
 
-/* Modal for image viewing */
 .modal {
   display: none;
   position: fixed;
@@ -697,7 +606,6 @@ p {
   cursor: pointer;
 }
 
-/* ==================== CHECKLIST GAME STYLES ==================== */
 .checklist-game-container {
   background: #f8f8f8;
   border-radius: 15px;
@@ -885,7 +793,6 @@ p {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Time allocation box */
 .time-allocation {
   background: linear-gradient(135deg, #fff8e1 0%, #fff 100%);
   border: 2px solid #ffc107;
@@ -910,7 +817,6 @@ p {
   margin-bottom: 8px;
 }
 
-/* PDF Builder Preview */
 .pdf-builder-preview {
   background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%);
   border: 3px solid var(--final);
@@ -992,7 +898,6 @@ p {
   box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
 }
 
-/* Print button */
 .print-button {
   position: fixed;
   bottom: 20px;
@@ -1015,6 +920,18 @@ p {
 .print-button:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.take-home-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--final), #e55a2b);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 @media print {
@@ -1075,23 +992,19 @@ p {
 
   <!-- Workshop Structure Overview -->
   <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px dashed #666;">
-    <h3 style="text-align: center; margin-top: 0; color: #333;">Workshop Structure (3 hours total)</h3>
+    <h3 style="text-align: center; margin-top: 0; color: #333;">Workshop Structure (2.5 hours)</h3>
     <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 15px;">
-      <div style="flex: 1; min-width: 150px; background: var(--inclass-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--inclass);">
-        <h4 style="margin-top: 0; color: var(--inclass); font-size: 1rem;">TASK 1 (45 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document</p>
+      <div style="flex: 1; min-width: 180px; background: var(--inclass-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--inclass);">
+        <h4 style="margin-top: 0; color: var(--inclass); font-size: 1rem;">TASK 1 (60 mins)</h4>
+        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document + Upload</p>
       </div>
-      <div style="flex: 1; min-width: 150px; background: var(--homework-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--homework);">
-        <h4 style="margin-top: 0; color: var(--homework); font-size: 1rem;">TASK 2 (45 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document</p>
+      <div style="flex: 1; min-width: 180px; background: var(--homework-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--homework);">
+        <h4 style="margin-top: 0; color: var(--homework); font-size: 1rem;">TASK 2 (60 mins)</h4>
+        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document + Upload</p>
       </div>
-      <div style="flex: 1; min-width: 150px; background: var(--quiz-light); padding: 12px; border-radius: 8px; border-left: 5px solid var(--quiz);">
-        <h4 style="margin-top: 0; color: var(--quiz); font-size: 1rem;">TASK 3 (30 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Review & Upload</p>
-      </div>
-      <div style="flex: 1; min-width: 150px; background: var(--final-light); padding: 12px; border-radius: 8px; border-left: 5px solid var(--final);">
-        <h4 style="margin-top: 0; color: var(--final); font-size: 1rem;">TASK 4 (60 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Build & Export PDF</p>
+      <div style="flex: 1; min-width: 180px; background: var(--final-light); padding: 12px; border-radius: 8px; border-left: 5px solid var(--final);">
+        <h4 style="margin-top: 0; color: var(--final); font-size: 1rem;">TASK 3 <span class="take-home-badge">Take Home</span></h4>
+        <p style="margin-bottom: 0; font-size: 0.9rem;">PDF Builder Guide</p>
       </div>
     </div>
   </div>
@@ -1109,18 +1022,14 @@ p {
     </div>
     <div class="nav-block nav-task1" data-section="task1">
       <h3>Task 1</h3>
-      <p>First Cycle (45 mins)</p>
+      <p>First Cycle (60 mins)</p>
     </div>
     <div class="nav-block nav-task2" data-section="task2">
       <h3>Task 2</h3>
-      <p>Second Cycle (45 mins)</p>
+      <p>Second Cycle (60 mins)</p>
     </div>
     <div class="nav-block nav-task3" data-section="task3">
       <h3>Task 3</h3>
-      <p>Review & Upload</p>
-    </div>
-    <div class="nav-block nav-task4" data-section="task4">
-      <h3>Task 4</h3>
       <p>PDF Builder 📄</p>
     </div>
   </div>
@@ -1141,7 +1050,7 @@ p {
           <p><strong>Objective:</strong> This session is about ensuring your portfolio meets the assessment criteria and tells your story clearly and creatively.</p>
           <p>You will work through a checklist game to review key areas of your portfolio, then document your progress with screenshots and reflection notes.</p>
           <p><strong>How it works:</strong> You'll complete two cycles. In each cycle, you'll choose one area from the checklist to review, make improvements to your portfolio, document your progress, and upload to Padlet.</p>
-          <p><strong>Final Step:</strong> After completing your improvements, you'll use the Portfolio PDF Builder to compile your pages into a professional PDF ready for submission.</p>
+          <p><strong>Take-Home Resource:</strong> Task 3 provides a guide for using the Portfolio PDF Builder tool to compile your pages into a professional PDF ready for submission.</p>
         </div>
         
         <div class="workshop-learning-points">
@@ -1191,13 +1100,13 @@ p {
   <!-- ==================== TASK 1: FIRST CYCLE ==================== -->
   <div id="task1" class="content-section">
     <div class="section-banner inclass-banner">
-      TASK 1: First Cycle — Review, Improve, Document, Upload (45 minutes)
+      TASK 1: First Cycle — Review, Improve, Document, Upload (60 minutes)
     </div>
 
     <div class="time-allocation">
       <h4>⏱️ Time Breakdown for Task 1</h4>
       <ul>
-        <li><strong>30 minutes:</strong> Choose ONE area from the checklist below and make improvements to your portfolio</li>
+        <li><strong>45 minutes:</strong> Choose ONE area from the checklist below and make improvements to your portfolio</li>
         <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
       </ul>
     </div>
@@ -1505,7 +1414,7 @@ p {
           <div class="step-number" style="background: var(--inclass);">3</div>
           <div class="step-title" style="color: var(--inclass);">Upload to Padlet</div>
           <div class="step-content">
-            <p>Save your progress report and upload to Padlet with your name as the title.</p>
+            <p>Save your progress report as JPEG and upload to Padlet with your name as the title.</p>
           </div>
         </div>
       </div>
@@ -1545,13 +1454,13 @@ p {
   <!-- ==================== TASK 2: SECOND CYCLE ==================== -->
   <div id="task2" class="content-section">
     <div class="section-banner homework-banner">
-      TASK 2: Second Cycle — Review, Improve, Document, Upload (45 minutes)
+      TASK 2: Second Cycle — Review, Improve, Document, Upload (60 minutes)
     </div>
 
     <div class="time-allocation">
       <h4>⏱️ Time Breakdown for Task 2</h4>
       <ul>
-        <li><strong>30 minutes:</strong> Choose a DIFFERENT area from the checklist and make improvements to your portfolio</li>
+        <li><strong>45 minutes:</strong> Choose a DIFFERENT area from the checklist and make improvements to your portfolio</li>
         <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
       </ul>
     </div>
@@ -1611,7 +1520,7 @@ p {
           <div class="step-number" style="background: var(--homework);">3</div>
           <div class="step-title" style="color: var(--homework);">Upload to Padlet</div>
           <div class="step-content">
-            <p>Save your progress report and upload to Padlet with your name as the title.</p>
+            <p>Save your progress report as JPEG and upload to Padlet with your name as the title.</p>
           </div>
         </div>
       </div>
@@ -1649,125 +1558,23 @@ p {
 
     <div class="nav-buttons">
       <button class="nav-btn prev-btn" onclick="goToSection('task1')">Previous: Task 1</button>
-      <button class="nav-btn next-btn" onclick="goToSection('task3')">Next: Task 3</button>
+      <button class="nav-btn next-btn" style="background: var(--final);" onclick="goToSection('task3')">Next: PDF Builder Guide</button>
     </div>
   </div>
 
-  <!-- ==================== TASK 3: REVIEW & UPLOAD ==================== -->
+  <!-- ==================== TASK 3: PDF BUILDER GUIDE ==================== -->
   <div id="task3" class="content-section">
-    <div class="section-banner quiz-banner">
-      TASK 3: Final Review & Confirmation (30 minutes)
-    </div>
-
-    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      Check that you have uploaded both progress reports to Padlet.
-    </p>
-
-    <!-- Final Checklist -->
-    <div style="background: linear-gradient(135deg, var(--secondary-light) 0%, #fff 100%); padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--secondary);">
-      <h3 style="color: var(--secondary); text-align: center; margin-top: 0; margin-bottom: 25px;">✅ Progress Documentation Checklist</h3>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 25px;">
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--inclass);">
-          <h4 style="color: var(--inclass); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">📤 Task 1 Upload</h4>
-          <p style="margin-bottom: 8px;">Progress report for your <strong>first</strong> checklist area</p>
-          <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">Include: Screenshot + Notes + Your Name</p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid var(--homework);">
-          <h4 style="color: var(--homework); margin-top: 0; font-size: 1.1rem; margin-bottom: 10px;">📤 Task 2 Upload</h4>
-          <p style="margin-bottom: 8px;">Progress report for your <strong>second</strong> checklist area</p>
-          <p style="margin-bottom: 0; font-size: 0.9rem; color: #666;">Include: Screenshot + Notes + Your Name</p>
-        </div>
-      </div>
-
-      <div style="text-align: center;">
-        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--secondary); color: white; padding: 18px 40px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.3rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4); transition: all 0.3s ease;">
-          View Padlet W9 →
-        </a>
-      </div>
-    </div>
-
-    <!-- Upload Instructions -->
-    <h2>How to Upload to Padlet</h2>
-
-    <div class="workflow-box" style="border-color: var(--quiz);">
-      <div class="workflow-header" style="background: var(--quiz);">
-        <h3>Upload Instructions</h3>
-      </div>
-      <div class="workflow-steps">
-        <div class="step">
-          <div class="step-number" style="background: var(--quiz);">1</div>
-          <div class="step-title" style="color: var(--quiz);">Click the + (Plus) Button</div>
-          <div class="step-content">
-            <p>Select "Upload" or drag your file directly onto the wall.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--quiz);">2</div>
-          <div class="step-title" style="color: var(--quiz);">Save as JPEG</div>
-          <div class="step-content">
-            <p><strong>Important:</strong> Save your work in JPEG format before uploading.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--quiz);">3</div>
-          <div class="step-title" style="color: var(--quiz);">Add Your Name</div>
-          <div class="step-content">
-            <p>After upload, click the title space above your image and type your full name as the title.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--quiz);">4</div>
-          <div class="step-title" style="color: var(--quiz);">Check Your Uploads</div>
-          <div class="step-content">
-            <p>Make sure <strong>both</strong> Task 1 and Task 2 uploads appear clearly before leaving the page.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tip-box">
-      <h4>💡 Tips</h4>
-      <ul>
-        <li>Maximum file size is 25MB</li>
-        <li>You should have TWO separate uploads on Padlet</li>
-        <li>Label each clearly (e.g., "Your Name - Task 1" and "Your Name - Task 2")</li>
-        <li>Your work won't be saved until you see it on the wall</li>
-      </ul>
-    </div>
-
-    <!-- Teaser for PDF Builder -->
-    <div style="background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%); padding: 25px; border-radius: 15px; border: 3px dashed var(--final); margin: 30px 0; text-align: center;">
-      <h3 style="color: var(--final); margin-top: 0;">🎯 Ready for the Final Step?</h3>
-      <p>Once you've verified your Padlet uploads, move on to <strong>Task 4</strong> to compile your portfolio into a professional PDF!</p>
-    </div>
-
-    <div class="nav-buttons">
-      <button class="nav-btn prev-btn" onclick="goToSection('task2')">Previous: Task 2</button>
-      <button class="nav-btn next-btn" style="background: var(--final);" onclick="goToSection('task4')">Next: PDF Builder</button>
-    </div>
-  </div>
-
-  <!-- ==================== TASK 4: PDF BUILDER ==================== -->
-  <div id="task4" class="content-section">
     <div class="section-banner final-banner">
-      TASK 4: Build & Export Your Portfolio PDF (60 minutes)
+      TASK 3: PDF Builder Guide <span class="take-home-badge">Take Home Resource</span>
     </div>
 
-    <div class="time-allocation" style="border-color: var(--final); background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%);">
-      <h4 style="color: var(--final);">⏱️ Time for Task 4</h4>
-      <ul>
-        <li><strong>45 minutes:</strong> Export your pages from InDesign as JPEGs and upload to the PDF Builder</li>
-        <li><strong>15 minutes:</strong> Review, reorder if needed, and download your final PDF</li>
-      </ul>
+    <div style="background: linear-gradient(135deg, #fff8e1 0%, #fff 100%); padding: 25px; border-radius: 15px; border: 3px solid #ffc107; margin: 25px 0; text-align: center;">
+      <h3 style="color: #f57c00; margin-top: 0;">📚 This is a Take-Home Resource</h3>
+      <p style="font-size: 1.1rem; margin-bottom: 0;">Use this guide when you're ready to compile your portfolio into a PDF for submission. You may not complete this in class, but it's here when you need it!</p>
     </div>
 
     <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      Now it's time to compile all your portfolio pages into a single PDF document ready for submission.
+      When you're ready, use this guide to compile all your portfolio pages into a single PDF document.
     </p>
 
     <!-- PDF Builder Preview -->
@@ -1818,36 +1625,37 @@ p {
       </a>
     </div>
 
-    <!-- How to Export from InDesign -->
-    <h2>Step 1: Export Pages from InDesign</h2>
+    <!-- How to Export from Photoshop -->
+    <h2>Step 1: Export Pages from Photoshop</h2>
 
     <div class="workflow-box" style="border-color: var(--final);">
       <div class="workflow-header" style="background: var(--final);">
-        <h3>Exporting as JPEGs from InDesign</h3>
+        <h3>Exporting as JPEGs from Photoshop (300 ppi)</h3>
       </div>
       <div class="workflow-steps">
         <div class="step">
           <div class="step-number" style="background: var(--final);">1</div>
-          <div class="step-title" style="color: var(--final);">Open Your InDesign Document</div>
+          <div class="step-title" style="color: var(--final);">Open Your Photoshop Document</div>
           <div class="step-content">
-            <p>Make sure all your pages are finalised and in the correct order.</p>
+            <p>Make sure your page is finalised and ready to export. Each portfolio page should be a separate PSD file.</p>
           </div>
         </div>
         
         <div class="step">
           <div class="step-number" style="background: var(--final);">2</div>
-          <div class="step-title" style="color: var(--final);">Go to File → Export</div>
+          <div class="step-title" style="color: var(--final);">Check Your Resolution</div>
           <div class="step-content">
-            <p>Press <span class="shortcut">Command (⌘) + E</span> on Mac or <span class="shortcut">Ctrl + E</span> on Windows.</p>
+            <p>Go to <strong>Image → Image Size</strong> (or press <span class="shortcut">Command (⌘) + Option + I</span> on Mac / <span class="shortcut">Ctrl + Alt + I</span> on Windows).</p>
+            <p>Make sure your resolution is set to <strong>300 pixels/inch (ppi)</strong>.</p>
           </div>
         </div>
         
         <div class="step">
           <div class="step-number" style="background: var(--final);">3</div>
-          <div class="step-title" style="color: var(--final);">Choose JPEG Format</div>
+          <div class="step-title" style="color: var(--final);">Go to File → Export → Export As</div>
           <div class="step-content">
-            <p>In the "Format" dropdown, select <strong>JPEG</strong>.</p>
-            <p>Name your file (e.g., "Portfolio_YourName") and choose a save location.</p>
+            <p>Press <span class="shortcut">Command (⌘) + Option + Shift + W</span> on Mac or <span class="shortcut">Ctrl + Alt + Shift + W</span> on Windows.</p>
+            <p><em>Alternatively:</em> Use <strong>File → Save As</strong> and choose JPEG format.</p>
           </div>
         </div>
         
@@ -1856,22 +1664,42 @@ p {
           <div class="step-title" style="color: var(--final);">Configure Export Settings</div>
           <div class="step-content">
             <ul>
-              <li><strong>Export:</strong> All Pages (or select specific range)</li>
-              <li><strong>Quality:</strong> Maximum</li>
-              <li><strong>Resolution:</strong> 150-300 ppi (150 is fine for screen viewing)</li>
-              <li><strong>Color Space:</strong> RGB</li>
+              <li><strong>Format:</strong> JPG</li>
+              <li><strong>Quality:</strong> 100% (Maximum)</li>
+              <li><strong>Embed Color Profile:</strong> Checked (sRGB recommended)</li>
             </ul>
+            <p><strong>If using Save As:</strong> Set Quality to 12 (Maximum) in the JPEG Options dialog.</p>
           </div>
         </div>
         
         <div class="step">
           <div class="step-number" style="background: var(--final);">5</div>
-          <div class="step-title" style="color: var(--final);">Click Export</div>
+          <div class="step-title" style="color: var(--final);">Name Your Files Correctly</div>
           <div class="step-content">
-            <p>InDesign will create numbered JPEG files for each page (e.g., Portfolio_YourName_01.jpg, Portfolio_YourName_02.jpg, etc.)</p>
+            <p>Name each file with a number prefix to keep them in order:</p>
+            <ul>
+              <li><strong>01_TitlePage.jpg</strong></li>
+              <li><strong>02_Introduction.jpg</strong></li>
+              <li><strong>03_Research_01.jpg</strong></li>
+              <li><strong>04_Research_02.jpg</strong></li>
+              <li>...and so on</li>
+            </ul>
+            <p>This helps the PDF Builder sort your pages automatically!</p>
+          </div>
+        </div>
+        
+        <div class="step">
+          <div class="step-number" style="background: var(--final);">6</div>
+          <div class="step-title" style="color: var(--final);">Repeat for All Pages</div>
+          <div class="step-content">
+            <p>Export each portfolio page as a separate JPEG file. You should have <strong>24-30 JPEG files</strong> when finished.</p>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="important-notice" style="background: rgba(255, 107, 53, 0.15); border-left-color: var(--final);">
+      <strong style="color: var(--final);">Important:</strong> Make sure all your pages are exported at <strong>300 ppi resolution</strong> for high-quality print output. This is essential for your portfolio submission!
     </div>
 
     <!-- How to Use PDF Builder -->
@@ -1934,6 +1762,7 @@ p {
         <li>Use the <strong>Checklist Guide</strong> button to review portfolio requirements</li>
         <li>Aim for <strong>24-30 pages</strong> — the tool shows your progress clearly</li>
         <li>Make sure your pages are <strong>A3 Landscape</strong> format for best results</li>
+        <li>All pages should be <strong>300 ppi</strong> for print quality</li>
       </ul>
     </div>
 
@@ -1942,6 +1771,7 @@ p {
       <h4 style="color: var(--final);">📋 Portfolio Requirements Reminder</h4>
       <ul>
         <li>✓ <strong>24-30 A3 Landscape pages</strong></li>
+        <li>✓ <strong>300 ppi resolution</strong> for all pages</li>
         <li>✓ Evidence of <strong>Harvard referencing</strong></li>
         <li>✓ Clear structure: Title → Intro → Research → Development → Refinement → Final</li>
         <li>✓ Consistent typography and colour palette</li>
@@ -1959,7 +1789,7 @@ p {
     </div>
 
     <div class="nav-buttons">
-      <button class="nav-btn prev-btn" onclick="goToSection('task3')">Previous: Task 3</button>
+      <button class="nav-btn prev-btn" onclick="goToSection('task2')">Previous: Task 2</button>
       <button class="nav-btn next-btn" onclick="goToSection('overview')">Back to Start</button>
     </div>
   </div>
@@ -1983,7 +1813,7 @@ function openModal(src) {
 }
 
 // Section Navigation
-const sections = ['overview', 'task1', 'task2', 'task3', 'task4'];
+const sections = ['overview', 'task1', 'task2', 'task3'];
 let currentSection = 'overview';
 
 function goToSection(sectionId) {

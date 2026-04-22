@@ -934,6 +934,147 @@ p {
   vertical-align: middle;
 }
 
+/* Quick Reference Accordion Styles */
+.quick-reference-section {
+  margin: 30px 0;
+  border: 2px solid #6c5ce7;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.quick-reference-header {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+  color: white;
+  padding: 18px 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.quick-reference-header:hover {
+  background: linear-gradient(135deg, #5b4cdb 0%, #8c7ae6 100%);
+}
+
+.quick-reference-header h3 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.quick-reference-toggle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.quick-reference-content {
+  display: none;
+  padding: 0;
+  background: #f8f8ff;
+}
+
+.quick-reference-content.open {
+  display: block;
+}
+
+.quick-reference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0;
+}
+
+.quick-ref-item {
+  padding: 18px 22px;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  transition: background 0.2s ease;
+}
+
+.quick-ref-item:hover {
+  background: white;
+}
+
+.quick-ref-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.quick-ref-item h4 {
+  color: #6c5ce7;
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-ref-item h4::after {
+  content: "→";
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.quick-ref-item:hover h4::after {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+.quick-ref-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+.quick-ref-tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.quick-ref-tag {
+  background: #e8e6ff;
+  color: #6c5ce7;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Poll Reminder Box */
+.poll-reminder {
+  background: linear-gradient(135deg, #ffeaa7 0%, #fff 100%);
+  border: 2px dashed #fdcb6e;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.poll-reminder-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.poll-reminder-content h4 {
+  color: #d68910;
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.poll-reminder-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #856404;
+}
+
 @media print {
   .print-button {
     display: none;
@@ -980,6 +1121,9 @@ p {
   }
   .main-navigation {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .quick-reference-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -1066,6 +1210,125 @@ p {
       </div>
     </div>
 
+    <!-- Quick Reference: Previous Workshops -->
+    <div class="quick-reference-section">
+      <div class="quick-reference-header" onclick="toggleQuickReference()">
+        <h3>📚 Quick Reference: Previous Workshops</h3>
+        <span class="quick-reference-toggle" id="qrToggle">+</span>
+      </div>
+      <div class="quick-reference-content" id="qrContent">
+        <div class="quick-reference-grid">
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank">
+              <h4>Photocopier & Scanner Editing</h4>
+              <p>Create high-contrast effects with Threshold, convert selections to paths, add text on path effects</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Threshold</span>
+                <span class="quick-ref-tag">Text on Path</span>
+                <span class="quick-ref-tag">Blend Modes</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank">
+              <h4>Moving Elements & Displacement</h4>
+              <p>Content-Aware Move tool, selection tools for fashion elements, Patch tool and blend modes</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Content-Aware</span>
+                <span class="quick-ref-tag">Lasso Tools</span>
+                <span class="quick-ref-tag">Patch Tool</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank">
+              <h4>Monoprint Digital Development</h4>
+              <p>Digitize monoprints, apply Threshold, remove white areas, use layer masks and blend modes</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Threshold</span>
+                <span class="quick-ref-tag">Layer Masks</span>
+                <span class="quick-ref-tag">Transparency</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank">
+              <h4>Enlarging Details & Artist Links</h4>
+              <p>Select and enlarge key details, add noise filters, apply colour effects, create visual connections</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Selection Tools</span>
+                <span class="quick-ref-tag">Noise Filter</span>
+                <span class="quick-ref-tag">Colour Layers</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank">
+              <h4>Stencils & Digital Brushes</h4>
+              <p>Turn images into stencils using Threshold, cut stencil shapes into textures, create custom brushes</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Threshold</span>
+                <span class="quick-ref-tag">Define Brush</span>
+                <span class="quick-ref-tag">Stencil Cutting</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank">
+              <h4>Generative Fill Subheadings</h4>
+              <p>Use AI to create visual subheading backgrounds, Content-Aware Fill, prompt writing for textures</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Generative Fill</span>
+                <span class="quick-ref-tag">AI Prompts</span>
+                <span class="quick-ref-tag">Subheadings</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank">
+              <h4>Pattern Brushes & Graphic Elements</h4>
+              <p>Create pattern brushes from drawings, clean up images, apply patterns along paths</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Define Pattern</span>
+                <span class="quick-ref-tag">Pen Tool</span>
+                <span class="quick-ref-tag">Visual Links</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank">
+              <h4>Handwriting to Digital Font</h4>
+              <p>Create custom font from handwriting using Calligraphr, clean letterforms, install and use in designs</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Calligraphr</span>
+                <span class="quick-ref-tag">Custom Font</span>
+                <span class="quick-ref-tag">Typography</span>
+              </div>
+            </a>
+          </div>
+          
+          <div class="quick-ref-item">
+            <a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank">
+              <h4>Fun Foam Printmaking</h4>
+              <p>Edit scanned prints, adjust Levels, remove backgrounds, use blending modes on research pages</p>
+              <div class="quick-ref-tags">
+                <span class="quick-ref-tag">Levels</span>
+                <span class="quick-ref-tag">Select Similar</span>
+                <span class="quick-ref-tag">Multiply Mode</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Harvard Referencing Recap -->
     <h2>Recap: How to Reference an Artist</h2>
     
@@ -1101,6 +1364,15 @@ p {
   <div id="task1" class="content-section">
     <div class="section-banner inclass-banner">
       TASK 1: First Cycle — Review, Improve, Document, Upload (60 minutes)
+    </div>
+
+    <!-- Poll Reminder -->
+    <div class="poll-reminder">
+      <div class="poll-reminder-icon">📊</div>
+      <div class="poll-reminder-content">
+        <h4>Tutor: Run a Poll at the Start</h4>
+        <p>Ask students: "Which checklist area will you focus on for Task 1?" Use the poll options to match the main checklist categories (e.g., Subheadings, Research, Typography, Referencing, etc.)</p>
+      </div>
     </div>
 
     <div class="time-allocation">
@@ -1228,6 +1500,7 @@ p {
               <li>Help expand creative ideas</li>
               <li>Include visual hierarchy</li>
             </ul>
+            <p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank">Generative Fill Subheadings workshop</a></p>
             <img src="examples/subheadings_example.jpg" alt="Example of good subheadings & layout" onclick="openModal(this.src)">
           </div>
         </div>
@@ -1247,6 +1520,7 @@ p {
               <li>Your own responses to what you've found</li>
               <li>Quotes that support your ideas</li>
             </ul>
+            <p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank">Enlarging Details & Artist Links workshop</a></p>
             <img src="examples/research_example.jpg" alt="Example of good research & inspiration" onclick="openModal(this.src)">
           </div>
         </div>
@@ -1266,6 +1540,7 @@ p {
               <li>A mix of whole designs and detail elements</li>
               <li>Research links supporting development</li>
             </ul>
+            <p><strong>Need help with textures?</strong> See <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank">Monoprint workshop</a> or <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank">Stencils & Brushes workshop</a></p>
             <img src="examples/design_example.jpg" alt="Example of good design development" onclick="openModal(this.src)">
           </div>
         </div>
@@ -1304,6 +1579,7 @@ p {
               <li>Title of work in italics</li>
               <li>[Image] designation</li>
             </ul>
+            <p><strong>Need help adding text?</strong> See <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank">Text on Path workshop</a></p>
             <img src="examples/referencing_example.jpg" alt="Example of good referencing" onclick="openModal(this.src)">
           </div>
         </div>
@@ -1347,6 +1623,7 @@ p {
               <li>Reflects your project theme</li>
             </ul>
             <p><strong>Suggested fonts:</strong> Orator ST, Andale Mono, Avenir Next Condensed, Helvetica Neue, Bodoni, Didot, Futura</p>
+            <p><strong>Want a unique font?</strong> See <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank">Handwriting to Digital Font workshop</a></p>
             <img src="examples/typography_example.jpg" alt="Example of good typography" onclick="openModal(this.src)">
           </div>
         </div>
@@ -1365,6 +1642,12 @@ p {
               <li>Support and enhance your content</li>
               <li>Are high quality</li>
               <li>Create visual interest</li>
+            </ul>
+            <p><strong>Need more visual interest?</strong> Try techniques from:</p>
+            <ul>
+              <li><a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank">Pattern Brushes workshop</a> — create visual links</li>
+              <li><a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank">Fun Foam Printmaking</a> — add handmade textures</li>
+              <li><a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank">Moving Elements workshop</a> — reposition and blend</li>
             </ul>
             <img src="examples/visual_elements_example.jpg" alt="Example of good visual elements" onclick="openModal(this.src)">
           </div>
@@ -1455,6 +1738,15 @@ p {
   <div id="task2" class="content-section">
     <div class="section-banner homework-banner">
       TASK 2: Second Cycle — Review, Improve, Document, Upload (60 minutes)
+    </div>
+
+    <!-- Poll Reminder -->
+    <div class="poll-reminder">
+      <div class="poll-reminder-icon">📊</div>
+      <div class="poll-reminder-content">
+        <h4>Tutor: Run a Poll at the Start of Task 2</h4>
+        <p>Ask students: "Which checklist area will you focus on for Task 2?" Remind them to choose something different from Task 1.</p>
+      </div>
     </div>
 
     <div class="time-allocation">
@@ -1810,6 +2102,22 @@ function openModal(src) {
   const modalImg = document.getElementById('modalImage');
   modal.style.display = "block";
   modalImg.src = src;
+}
+
+// Quick Reference Toggle
+function toggleQuickReference() {
+  const content = document.getElementById('qrContent');
+  const toggle = document.getElementById('qrToggle');
+  
+  if (content.classList.contains('open')) {
+    content.classList.remove('open');
+    toggle.textContent = '+';
+    toggle.style.transform = 'rotate(0deg)';
+  } else {
+    content.classList.add('open');
+    toggle.textContent = '−';
+    toggle.style.transform = 'rotate(180deg)';
+  }
 }
 
 // Section Navigation

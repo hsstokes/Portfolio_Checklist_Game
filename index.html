@@ -5,2288 +5,846 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Portfolio Checklist Game - Digital Skills W9</title>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+
 :root {
-  --primary: #ea37a3;
-  --primary-light: #fdf1f5;
-  --secondary: #0a8080;
-  --secondary-light: #f5ffff;
-  --dark: #222;
-  --light: #fff;
-  --grid-light: #e0e0e0;
-  --homework: #ea37a3;
-  --homework-light: #fdf1f5;
-  --inclass: #0a8080;
-  --inclass-light: #f5ffff;
-  --homework-banner: #ffebf5;
-  --inclass-banner: #e6ffff;
-  --final: #ff6b35;
-  --final-light: #fff4f0;
+  --ink: #1a1a1a;
+  --paper: #f2ede8;
+  --grid: #ddd8d2;
+  --teal: #0a7a7a;   --teal-light: #e3f2f1;
+  --pink: #ea37a3;   --pink-light: #fde9f4;
+  --purple: #6c35c9; --purple-light: #efe8fb;
+  --blue: #2563a8;   --blue-light: #e6eef8;
+  --gold: #c87900;   --gold-light: #fbf0dc;
+  --warm-mid: #d4cfc8;
+  --concrete: #8a8a8a;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: "Typewriter Condensed", "Courier New", monospace;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink);
+  background-color: var(--paper);
   background-image:
-    linear-gradient(var(--grid-light) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-light) 1px, transparent 1px);
-  background-size: 20px 20px, 20px 20px;
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
   background-attachment: fixed;
-  color: var(--dark);
-  padding: 20px;
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 16px;
+  padding: 32px 20px 80px;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.97);
-  border: 3px solid var(--primary);
-  border-radius: 12px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-}
+.wrap { max-width: 960px; margin: 0 auto; }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
+/* ---------- Header ---------- */
+header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 20px; flex-wrap: wrap;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 20px; margin-bottom: 24px;
 }
-
-.content-section {
-  display: none;
+.eyebrow {
+  font-family: 'Space Mono', monospace; font-size: 0.78rem;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--pink);
+  margin-bottom: 8px;
 }
-
-.content-section.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.main-navigation {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
-  margin: 25px 0;
-}
-
-.nav-block {
-  background: #f8f8f8;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.nav-block:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.nav-block h3 {
-  font-size: 1.2rem;
-  margin: 0 0 8px 0;
-  position: relative;
-  z-index: 2;
-}
-
-.nav-block p {
-  font-size: 0.9rem;
-  margin: 0;
-  opacity: 0.8;
-  position: relative;
-  z-index: 2;
-}
-
-.nav-overview {
-  border-color: var(--secondary);
-  background-color: var(--secondary-light);
-}
-
-.nav-overview h3 {
-  color: var(--secondary);
-}
-
-.nav-task1 {
-  border-color: var(--inclass);
-  background-color: var(--inclass-light);
-}
-
-.nav-task1 h3 {
-  color: var(--inclass);
-}
-
-.nav-task2 {
-  border-color: var(--homework);
-  background-color: var(--homework-light);
-}
-
-.nav-task2 h3 {
-  color: var(--homework);
-}
-
-.nav-task3 {
-  border-color: var(--final);
-  background-color: var(--final-light);
-}
-
-.nav-task3 h3 {
-  color: var(--final);
-}
-
-.active-block {
-  background-color: var(--secondary);
-  color: white;
-  box-shadow: 0 8px 20px rgba(10, 128, 128, 0.3);
-  transform: translateY(-5px);
-}
-
-.active-block h3, .active-block p {
-  color: white;
-}
-
-.nav-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 0 20px;
-}
-
-.nav-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.nav-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.prev-btn {
-  background-color: #f2f2f2;
-  color: #555;
-}
-
-.prev-btn::before {
-  content: "←";
-}
-
-.next-btn {
-  background-color: var(--secondary);
-  color: white;
-}
-
-.next-btn::after {
-  content: "→";
-}
-
-.progress-bar-container {
-  height: 10px;
-  background-color: #eee;
-  border-radius: 5px;
-  margin: 20px 0;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: var(--secondary);
-  width: 0%;
-  transition: width 0.3s ease;
-}
-
-h1, h2, h3 {
-  font-family: "Typewriter Condensed", "Courier New", monospace;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.8em;
-}
-
 h1 {
-  color: var(--primary);
-  font-size: 2.5rem;
-  border-bottom: 2px solid var(--secondary);
-  padding-bottom: 15px;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-weight: bold;
+  font-family: 'DM Serif Display', serif; font-weight: 400;
+  font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.05;
+}
+h1 em { color: var(--teal); font-style: italic; }
+.meta {
+  font-family: 'Space Mono', monospace; font-size: 0.85rem;
+  text-align: right; color: var(--concrete);
+}
+.meta strong { color: var(--ink); display: block; font-size: 1rem; }
+
+/* ---------- Diagonal rule ---------- */
+.rule {
+  height: 10px; margin: 34px 0;
+  background: linear-gradient(90deg, var(--pink), var(--teal));
+  transform: skewX(-15deg);
 }
 
 h2 {
-  color: var(--secondary);
-  font-size: 1.6rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
+  font-family: 'DM Serif Display', serif; font-weight: 400;
+  font-size: 1.9rem; margin: 26px 0 14px;
+  display: flex; align-items: center; gap: 14px;
 }
-
 h2::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 25px;
-  background: var(--primary);
-  margin-right: 15px;
+  content: ""; width: 5px; height: 30px; background: var(--pink); flex-shrink: 0;
 }
+h3 { font-family: 'Space Mono', monospace; font-size: 1rem; margin: 18px 0 8px; }
+p { margin-bottom: 12px; }
 
-h3 {
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--primary);
+/* ---------- Progress + nav ---------- */
+.progress-wrap { margin-bottom: 18px; }
+.progress-label {
+  font-family: 'Space Mono', monospace; font-size: 0.78rem;
+  display: flex; justify-content: space-between; margin-bottom: 6px;
 }
+.progress-bar { height: 10px; background: var(--warm-mid); border: 2px solid var(--ink); }
+.progress-fill { height: 100%; width: 0; background: var(--teal); transition: width .35s; }
 
-p {
-  line-height: 1.8;
-  margin-bottom: 1.2em;
-  font-size: 1.1rem;
+.nav-block {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px; margin-bottom: 10px;
 }
+.nav-btn {
+  font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700;
+  padding: 12px 10px; background: #fff; color: var(--ink);
+  border: 2px solid var(--ink); cursor: pointer; text-align: left;
+  transition: transform .15s, box-shadow .15s;
+}
+.nav-btn small { display: block; font-weight: 400; color: var(--concrete); font-size: 0.72rem; }
+.nav-btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.nav-btn.active { color: #fff; }
+.nav-btn.active small { color: rgba(255,255,255,.85); }
+.nav-btn[data-c="ink"].active    { background: var(--ink); }
+.nav-btn[data-c="teal"].active   { background: var(--teal); border-color: var(--teal); }
+.nav-btn[data-c="pink"].active   { background: var(--pink); border-color: var(--pink); }
+.nav-btn[data-c="purple"].active { background: var(--purple); border-color: var(--purple); }
+.nav-btn[data-c="blue"].active   { background: var(--blue); border-color: var(--blue); }
+.nav-btn[data-c="gold"].active   { background: var(--gold); border-color: var(--gold); }
+.nav-btn.done::after { content: " ✓"; }
 
-.workshop-overview {
-  margin: 35px 0;
-  border-radius: 15px;
-  border: 3px solid var(--secondary);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-  background: #f8f8f8;
-}
-
-.workshop-header {
-  background: var(--secondary);
-  color: white;
-  padding: 12px 20px;
-  text-align: center;
-}
-
-.workshop-header h3 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: white;
-}
-
-.workshop-title {
-  padding: 20px 25px 10px 25px;
-}
-
-.workshop-title h3 {
-  color: var(--secondary);
-  text-align: center;
-  font-size: 1.6rem;
-  margin: 0 0 20px 0;
-  border-bottom: 2px dashed var(--secondary);
-  padding-bottom: 15px;
-}
-
-.workshop-content {
-  padding: 0 25px 25px 25px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-  align-items: start;
-}
-
-.workshop-learning-points {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.learning-points-title {
-  color: var(--primary);
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  border-left: 5px solid var(--primary);
-  padding-left: 15px;
-}
-
-.learning-points-list {
-  list-style-type: none;
-  padding-left: 5px;
-}
-
-.learning-points-item {
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 25px;
-}
-
-.learning-points-item::before {
-  content: "•";
-  color: var(--primary);
-  position: absolute;
-  left: 0;
-  font-weight: bold;
-}
-
-.important-notice {
-  margin-bottom: 20px; 
-  padding: 15px 20px; 
-  background: rgba(234, 55, 163, 0.15); 
-  border-left: 5px solid var(--primary); 
-  border-radius: 8px;
-  font-size: 1.1rem;
-}
-
-.important-notice strong {
-  color: var(--primary);
-}
-
-.shortcut {
-  display: inline-block;
-  padding: 3px 10px;
-  background: #f2f2f2;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 1em;
-  margin: 0 2px;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-}
-
-.workflow-box {
-  background: #f8f8f8;
-  margin: 35px 0;
-  border-radius: 15px;
-  border: 3px solid var(--secondary);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-
-.workflow-header {
-  background: var(--secondary);
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-}
-
-.workflow-header h3 {
-  margin: 0;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.workflow-steps {
-  padding: 20px 25px;
-}
-
-.step {
-  position: relative;
-  padding: 20px 20px 20px 50px;
-  background: white;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.step-number {
-  position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: var(--primary);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-.step-title {
-  color: var(--primary);
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.step-content ul, .step-content ol {
-  margin-left: 20px;
-  margin-bottom: 15px;
-}
-
-.step-content li {
-  margin-bottom: 8px;
-}
+/* ---------- Sections ---------- */
+.section { display: none; animation: fade .3s; }
+.section.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 .section-banner {
-  margin: 25px 0;
-  padding: 15px 20px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.3rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  position: relative;
-  overflow: hidden;
+  color: #fff; padding: 20px 22px; margin-bottom: 18px;
+  font-family: 'Space Mono', monospace;
+}
+.section-banner .num { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; opacity: .85; }
+.section-banner .title { font-family: 'DM Serif Display', serif; font-size: 1.9rem; line-height: 1.2; }
+.bg-ink { background: var(--ink); }
+.bg-teal { background: var(--teal); }
+.bg-pink { background: var(--pink); }
+.bg-purple { background: var(--purple); }
+.bg-blue { background: var(--blue); }
+.bg-gold { background: var(--gold); }
+
+.intro { font-size: 1.05rem; margin-bottom: 18px; }
+
+/* ---------- Cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 14px 0 20px; }
+.card {
+  background: #fff; border: 2px solid var(--ink); padding: 16px;
+  cursor: default;
+}
+.card.link { cursor: pointer; transition: transform .15s, box-shadow .15s; }
+.card.link:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.card .icon { font-size: 1.6rem; }
+.card .label { font-family: 'Space Mono', monospace; font-weight: 700; margin: 4px 0; }
+.card p { font-size: 0.9rem; margin: 0; }
+.card.teal { border-top: 6px solid var(--teal); }
+.card.pink { border-top: 6px solid var(--pink); }
+.card.blue { border-top: 6px solid var(--blue); }
+.card.gold { border-top: 6px solid var(--gold); }
+
+/* ---------- Boxes ---------- */
+.box { padding: 16px 18px; margin: 16px 0; border-left: 5px solid; background: #fff; }
+.box strong { font-family: 'Space Mono', monospace; }
+.box.pink { border-color: var(--pink); background: var(--pink-light); }
+.box.teal { border-color: var(--teal); background: var(--teal-light); }
+.box.blue { border-color: var(--blue); background: var(--blue-light); }
+.box.gold { border-color: var(--gold); background: var(--gold-light); }
+.box ul { margin: 6px 0 0 20px; }
+
+.example {
+  background: var(--ink); color: #fff; padding: 18px; margin: 16px 0;
+}
+.example .label { font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 10px; }
+.example img { width: 100%; height: auto; display: block; border: 2px solid #fff; cursor: zoom-in; background: #333; min-height: 60px; }
+.example p { margin: 10px 0 0; font-size: 0.9rem; }
+
+.key {
+  font-family: 'Space Mono', monospace; font-size: 0.82rem;
+  background: #fff; border: 2px solid var(--ink); border-bottom-width: 4px;
+  padding: 1px 7px; white-space: nowrap;
+}
+.path {
+  font-family: 'Space Mono', monospace; font-size: 0.88rem;
+  background: var(--paper); border: 1px dashed var(--concrete); padding: 1px 6px;
 }
 
-.section-banner::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 100%;
+/* ---------- Accordion steps ---------- */
+.step { background: #fff; border: 2px solid var(--ink); margin-bottom: 10px; }
+.step-head {
+  width: 100%; display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; background: none; border: 0; cursor: pointer;
+  font-family: 'Space Mono', monospace; font-size: 0.95rem; font-weight: 700;
+  text-align: left; color: var(--ink);
 }
-
-.inclass-banner {
-  background-color: var(--inclass-banner);
-  border: 2px solid var(--inclass);
-  color: var(--inclass);
+.step-num {
+  width: 34px; height: 34px; flex-shrink: 0; color: #fff;
+  display: grid; place-items: center; font-size: 0.95rem;
 }
+.step-head .arrow { margin-left: auto; transition: transform .2s; }
+.step.open .arrow { transform: rotate(90deg); }
+.step-body { display: none; padding: 0 18px 16px 66px; }
+.step.open .step-body { display: block; }
+.step-body ol, .step-body ul { margin: 4px 0 10px 20px; }
+.step-body li { margin-bottom: 6px; }
+@media (max-width: 600px) { .step-body { padding-left: 18px; } }
 
-.inclass-banner::before {
-  background-color: var(--inclass);
+/* ---------- Checklist ---------- */
+.checklist { background: #fff; border: 2px solid var(--ink); padding: 16px 18px; margin: 20px 0; }
+.checklist h3 { margin-top: 0; }
+.checklist label {
+  display: flex; gap: 12px; align-items: flex-start; padding: 8px 0;
+  border-bottom: 1px dashed var(--warm-mid); cursor: pointer;
 }
+.checklist label:last-child { border-bottom: 0; }
+.checklist input { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+.checklist input:checked + span { text-decoration: line-through; color: var(--concrete); }
+.checklist.teal { border-top: 6px solid var(--teal); } .checklist.teal input { accent-color: var(--teal); }
+.checklist.pink { border-top: 6px solid var(--pink); } .checklist.pink input { accent-color: var(--pink); }
+.checklist.purple { border-top: 6px solid var(--purple); } .checklist.purple input { accent-color: var(--purple); }
+.checklist.blue { border-top: 6px solid var(--blue); } .checklist.blue input { accent-color: var(--blue); }
+.checklist.gold { border-top: 6px solid var(--gold); } .checklist.gold input { accent-color: var(--gold); }
 
-.homework-banner {
-  background-color: var(--homework-banner);
-  border: 2px solid var(--homework);
-  color: var(--homework);
+/* ---------- Reflection cards ---------- */
+.reflect { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 10px 0; }
+.reflect div { background: var(--blue-light); border: 2px solid var(--blue); padding: 12px; font-size: 0.9rem; }
+.reflect b { font-family: 'Space Mono', monospace; color: var(--blue); display: block; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block; font-family: 'Space Mono', monospace; font-weight: 700;
+  font-size: 0.88rem; padding: 12px 18px; border: 2px solid var(--ink);
+  background: #fff; color: var(--ink); cursor: pointer; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
 }
+.btn:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 var(--ink); }
+.btn.blue { background: var(--blue); color: #fff; border-color: var(--blue); }
+.pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+.pager .btn.next { background: var(--ink); color: #fff; margin-left: auto; }
 
-.homework-banner::before {
-  background-color: var(--homework);
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed; inset: 0; background: rgba(0,0,0,.88);
+  display: none; align-items: center; justify-content: center; z-index: 100;
+  padding: 20px; cursor: zoom-out;
 }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid #fff; }
 
-.final-banner {
-  background-color: var(--final-light);
-  border: 2px solid var(--final);
-  color: var(--final);
+footer { margin-top: 40px; font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--concrete); text-align: center; }
+/* ---------- Lesson extras ---------- */
+.card img, .thumbs img, .step-body img.zoom {
+  width: 100%; height: auto; display: block; border: 2px solid var(--ink);
+  cursor: zoom-in; background: var(--warm-mid); min-height: 60px; margin: 8px 0;
 }
+.card img { aspect-ratio: 4/3; object-fit: cover; }
+.step-body img.zoom { max-width: 460px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 12px; }
+.thumbs figure { margin: 0; }
+.thumbs figcaption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: #ddd; }
+.example img.zoom { max-height: 520px; object-fit: contain; }
 
-.final-banner::before {
-  background-color: var(--final);
+.video { border: 2px solid var(--ink); background: var(--ink); margin: 6px 0 18px; }
+.video .frame { position: relative; padding-bottom: 56.25%; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .cap { color: #fff; font-family: 'Space Mono', monospace; font-size: 0.85rem; padding: 8px 12px; }
+
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 10px 0 20px; }
+.keys div { background: #fff; border: 2px solid var(--ink); padding: 12px; text-align: center; font-size: 0.88rem; }
+.keys .key { display: inline-block; margin-bottom: 6px; }
+
+/* Quiz */
+.q { background: #fff; border: 2px solid var(--ink); border-top: 6px solid var(--purple); padding: 16px 18px; margin-bottom: 14px; }
+.q .qt { font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 10px; }
+.opts { display: grid; gap: 8px; }
+.opt {
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.95rem; text-align: left;
+  padding: 10px 14px; background: var(--paper); border: 2px solid var(--warm-mid); cursor: pointer; color: var(--ink);
 }
+.opt:hover { border-color: var(--purple); }
+.opt.right { background: #e3f4e6; border-color: #2e7d32; }
+.opt.wrong { background: #fdecec; border-color: #c62828; }
+.fb { font-family: 'Space Mono', monospace; font-size: 0.85rem; margin-top: 8px; min-height: 1.2em; }
+.score { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--purple); }
 
-.tip-box {
-  background: linear-gradient(135deg, #e8f5e9 0%, #fff 100%);
-  border: 2px solid #28a745;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 25px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.order { display: grid; gap: 8px; margin: 10px 0; }
+.order-item {
+  display: flex; align-items: center; gap: 10px; background: #fff;
+  border: 2px solid var(--ink); padding: 8px 10px;
 }
-
-.tip-box h4 {
-  color: #28a745;
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
+.order-item .pos { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--purple); width: 22px; }
+.order-item .txt { flex: 1; font-size: 0.92rem; }
+.order-item button {
+  width: 38px; height: 38px; font-size: 1rem; border: 2px solid var(--ink);
+  background: var(--paper); cursor: pointer;
 }
+.order-item button:disabled { opacity: .3; cursor: default; }
+.order-item.ok { border-color: #2e7d32; background: #e3f4e6; }
+.order-item.no { border-color: #c62828; background: #fdecec; }
+.btn.purple { background: var(--purple); color: #fff; border-color: var(--purple); }
+.btn.gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+.file { font-family: 'Space Mono', monospace; font-size: 0.85rem; background: var(--paper); padding: 1px 6px; border: 1px dashed var(--concrete); word-break: break-all; }
+.checklist.ink { border-top: 6px solid var(--ink); } .checklist.ink input { accent-color: var(--ink); }
 
-.tip-box p {
-  margin-bottom: 10px;
-}
+/* Stuck? troubleshooting */
+.stuck { background: #fff; border: 2px solid var(--ink); margin: 20px 0; }
+.stuck .stuck-head { background: var(--ink); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700; padding: 10px 16px; }
+.stuck .row { display: grid; grid-template-columns: 1fr 1.4fr; border-top: 1px dashed var(--warm-mid); }
+.stuck .row:first-of-type { border-top: 0; }
+.stuck .prob, .stuck .fix { padding: 10px 16px; font-size: 0.92rem; }
+.stuck .prob { font-weight: 600; background: var(--paper); }
+.stuck .prob::before { content: "✗ "; color: #c62828; }
+.stuck .fix::before { content: "→ "; color: var(--teal); font-weight: 700; }
+@media (max-width: 600px) { .stuck .row { grid-template-columns: 1fr; } }
 
-.reminder-box {
-  background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%);
-  border: 2px solid #1976d2;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 25px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.reminder-box h4 {
-  color: #1976d2;
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.reminder-box ul {
-  margin-left: 20px;
-}
-
-.reminder-box li {
-  margin-bottom: 8px;
-}
-
-.reference-box {
-  background: linear-gradient(135deg, #fff3e0 0%, #fff 100%);
-  border: 2px solid #ff9800;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 25px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.reference-box h4 {
-  color: #ff9800;
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.reference-box code {
-  background: #f5f5f5;
-  padding: 10px 15px;
-  border-radius: 8px;
-  display: block;
-  margin: 10px 0;
-  font-family: 'Courier New', monospace;
-  font-size: 0.95rem;
-  border-left: 4px solid #ff9800;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.85);
-  overflow: auto;
-}
-
-.modal-content {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 90%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px solid white;
-  border-radius: 5px;
-}
-
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-  z-index: 1001;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.checklist-game-container {
-  background: #f8f8f8;
-  border-radius: 15px;
-  border: 3px solid var(--secondary);
-  overflow: hidden;
-  margin: 30px 0;
-}
-
-.checklist-game-header {
-  background: var(--secondary);
-  color: white;
-  padding: 15px 20px;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.checklist-game-header h3 {
-  margin: 0;
-  color: white;
-  font-size: 1.3rem;
-}
-
-.checklist-progress {
-  background: rgba(255,255,255,0.3);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-}
-
-.checklist-tabs {
-  display: flex;
-  border-bottom: 2px solid #ddd;
-  background: white;
-}
-
-.checklist-tab {
-  flex: 1;
-  padding: 15px 20px;
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  border: none;
-  background: #f5f5f5;
-  color: #666;
-}
-
-.checklist-tab:first-child {
-  border-right: 1px solid #ddd;
-}
-
-.checklist-tab.active {
-  background: var(--secondary);
-  color: white;
-}
-
-.checklist-tab:hover:not(.active) {
-  background: #e0e0e0;
-}
-
-.checklist-page {
-  display: none;
-  padding: 20px;
-}
-
-.checklist-page.active {
-  display: block;
-}
-
-.checklist-item-game {
-  background: white;
-  border: 2px solid #FFB6C1;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.checklist-item-game.completed {
-  border-color: var(--secondary);
-  background: linear-gradient(135deg, var(--secondary-light) 0%, white 100%);
-}
-
-.checklist-item-game.completed .checklist-item-top {
-  background: var(--secondary);
-}
-
-.checklist-item-game.completed .checklist-item-top span {
-  color: white;
-}
-
-.checklist-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #fdf1f5;
-  gap: 15px;
-}
-
-.checklist-item-top span {
-  flex: 1;
+/* ---------- Due banner ---------- */
+.due {
+  background: var(--ink); color: #fff;
+  font-family: 'Space Mono', monospace; font-weight: 700;
+  padding: 16px 20px; display: flex; gap: 14px; align-items: center;
   font-size: 1rem;
-  line-height: 1.5;
 }
+.due span { font-size: 1.5rem; }
 
-.checklist-item-top a {
-  color: var(--secondary);
-  text-decoration: underline;
-}
+/* ---------- Save box ---------- */
+.save { background: var(--gold-light); border: 2px solid var(--gold); border-left-width: 8px; padding: 16px 20px; }
+.save .title { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+.save ul { margin-left: 20px; }
 
-.button-group {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
+.checklist .head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Space Mono', monospace; font-weight: 700; margin-bottom: 6px;
 }
+.checklist .count { font-size: 0.82rem; color: var(--gold); }
+.checklist label {
+  display: flex; gap: 12px; align-items: flex-start; padding: 8px 0;
+  border-bottom: 1px dashed var(--warm-mid); cursor: pointer;
+}
+.checklist label:last-of-type { border-bottom: 0; }
+.checklist input { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; cursor: pointer; accent-color: var(--gold); }
+.checklist input:checked + span { text-decoration: line-through; color: var(--concrete); }
+.ready {
+  display: none; margin-top: 12px; padding: 10px 14px;
+  background: var(--gold); color: #fff; font-family: 'Space Mono', monospace; font-weight: 700;
+}
+.ready.show { display: block; }
 
-.example-btn, .complete-btn {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
 
-.example-btn {
-  background: var(--secondary);
-  color: white;
-}
+.checklist .head { display:flex; justify-content:space-between; align-items:center; font-family:'Space Mono',monospace; font-weight:700; margin-bottom:6px; }
+.tutor { background: var(--purple-light); border: 2px dashed var(--purple); padding: 14px 18px; margin: 14px 0; }
+.tutor strong { font-family: 'Space Mono', monospace; color: var(--purple); }
+.compare { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0; }
+.compare > div { background:#fff; border:2px solid var(--ink); padding:14px 16px; }
+.compare .bad { border-top:6px solid #c62828; } .compare .good { border-top:6px solid #2e7d32; }
+.compare h3 { margin-top:0; }
+.compare ul { margin-left:18px; }
+@media (max-width:600px){ .compare{grid-template-columns:1fr;} }
+code.prompt { font-family:'Space Mono',monospace; background:var(--ink); color:#fff; padding:2px 8px; font-size:0.85rem; display:inline-block; margin-top:4px; }
+.game-item { background:#fff; border:2px solid var(--ink); margin-bottom:10px; }
+.game-item .gi-head { display:flex; gap:12px; align-items:flex-start; padding:12px 14px; }
+.game-item .gi-text { flex:1; font-size:0.95rem; }
+.game-item .gi-btns { display:flex; gap:6px; flex-shrink:0; }
+.game-item .gi-btns button { font-family:'Space Mono',monospace; font-size:0.78rem; font-weight:700; padding:6px 10px; border:2px solid var(--ink); background:var(--paper); cursor:pointer; }
+.game-item.done { border-color:#2e7d32; background:#eef8f0; }
+.game-item.done .gi-done { background:#2e7d32; color:#fff; border-color:#2e7d32; }
+.game-item .gi-body { display:none; padding:0 14px 14px; border-top:1px dashed var(--warm-mid); }
+.game-item.open .gi-body { display:block; }
+.game-item .gi-body img { max-width:520px; }
+.subtabs { display:flex; gap:8px; margin:10px 0 14px; flex-wrap:wrap; }
+.subtabs button { font-family:'Space Mono',monospace; font-weight:700; font-size:0.85rem; padding:10px 14px; border:2px solid var(--ink); background:#fff; cursor:pointer; }
+.subtabs button.on { background:var(--teal); color:#fff; border-color:var(--teal); }
+.celebrate { display:none; background:var(--gold); color:#fff; font-family:'Space Mono',monospace; font-weight:700; padding:10px 14px; margin-top:8px; }
+.celebrate.show { display:block; }
+.ref-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; }
+.ref-links a { display:block; background:#fff; border:2px solid var(--ink); padding:12px; color:var(--ink); text-decoration:none; font-size:0.88rem; }
+.ref-links a:hover { box-shadow:4px 4px 0 var(--ink); transform:translate(-2px,-2px); }
+.ref-links b { font-family:'Space Mono',monospace; display:block; color:var(--teal); }
+.ref-links small { color:var(--concrete); font-family:'Space Mono',monospace; font-size:0.72rem; }
+.print-btn { position:fixed; right:16px; bottom:16px; width:46px; height:46px; border:2px solid var(--ink); background:#fff; font-size:1.2rem; cursor:pointer; }
+@media print { .print-btn, nav, .pager, .progress-wrap { display:none !important; } .section { display:block !important; } }
 
-.example-btn:hover {
-  background: #086868;
-}
-
-.complete-btn {
-  background: #FFB6C1;
-  color: white;
-}
-
-.complete-btn:hover {
-  background: #FF69B4;
-}
-
-.example-content {
-  display: none;
-  padding: 15px 20px;
-  background: #f9f9f9;
-  border-top: 1px dashed #ddd;
-}
-
-.example-content.show {
-  display: block;
-}
-
-.example-content img {
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-
-.completion-message {
-  display: none;
-  text-align: center;
-  padding: 20px;
-  background: linear-gradient(135deg, var(--secondary) 0%, #086868 100%);
-  color: white;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-size: 1.3rem;
-}
-
-.completion-message.show {
-  display: block;
-  animation: celebrate 0.5s ease;
-}
-
-@keyframes celebrate {
-  0% { transform: scale(0.8); opacity: 0; }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.time-allocation {
-  background: linear-gradient(135deg, #fff8e1 0%, #fff 100%);
-  border: 2px solid #ffc107;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 25px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.time-allocation h4 {
-  color: #f57c00;
-  margin-top: 0;
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.time-allocation ul {
-  margin-left: 20px;
-}
-
-.time-allocation li {
-  margin-bottom: 8px;
-}
-
-.pdf-builder-preview {
-  background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%);
-  border: 3px solid var(--final);
-  border-radius: 15px;
-  padding: 30px;
-  margin: 30px 0;
-  text-align: center;
-}
-
-.pdf-builder-preview h3 {
-  color: var(--final);
-  margin-top: 0;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.pdf-builder-preview p {
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.pdf-structure-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
-  margin: 25px 0;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-}
-
-.pdf-structure-item {
-  background: #f8f8f8;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 12px 8px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.pdf-structure-item:hover {
-  border-color: var(--final);
-  transform: translateY(-2px);
-}
-
-.pdf-structure-item .num {
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--final);
-}
-
-.pdf-structure-item .label {
-  font-size: 0.75rem;
-  color: #666;
-  margin-top: 4px;
-}
-
-.pdf-structure-item .pages {
-  font-size: 0.65rem;
-  color: #999;
-  margin-top: 2px;
-}
-
-.open-builder-btn {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--final), #e55a2b);
-  color: white;
-  padding: 18px 40px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.3rem;
-  box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
-  transition: all 0.3s ease;
-}
-
-.open-builder-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
-}
-
-.print-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--secondary);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 24px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.print-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-.take-home-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--final), #e55a2b);
-  color: white;
-  padding: 5px 12px;
-  border-radius: 15px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  margin-left: 10px;
-  vertical-align: middle;
-}
-
-/* Quick Reference Accordion Styles */
-.quick-reference-section {
-  margin: 30px 0;
-  border: 2px solid #6c5ce7;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.quick-reference-header {
-  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
-  color: white;
-  padding: 18px 25px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.quick-reference-header:hover {
-  background: linear-gradient(135deg, #5b4cdb 0%, #8c7ae6 100%);
-}
-
-.quick-reference-header h3 {
-  margin: 0;
-  color: white;
-  font-size: 1.3rem;
-}
-
-.quick-reference-toggle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  transition: transform 0.3s ease;
-}
-
-.quick-reference-content {
-  display: none;
-  padding: 0;
-  background: #f8f8ff;
-}
-
-.quick-reference-content.open {
-  display: block;
-}
-
-.quick-reference-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 0;
-}
-
-.quick-ref-item {
-  padding: 18px 22px;
-  border-bottom: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  transition: background 0.2s ease;
-}
-
-.quick-ref-item:hover {
-  background: white;
-}
-
-.quick-ref-item a {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.quick-ref-item h4 {
-  color: #6c5ce7;
-  margin: 0 0 8px 0;
-  font-size: 1.05rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.quick-ref-item h4::after {
-  content: "→";
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.quick-ref-item:hover h4::after {
-  opacity: 1;
-  transform: translateX(3px);
-}
-
-.quick-ref-item p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.5;
-}
-
-.quick-ref-tags {
-  margin-top: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.quick-ref-tag {
-  background: #e8e6ff;
-  color: #6c5ce7;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
-/* Poll Reminder Box */
-.poll-reminder {
-  background: linear-gradient(135deg, #ffeaa7 0%, #fff 100%);
-  border: 2px dashed #fdcb6e;
-  border-radius: 10px;
-  padding: 15px 20px;
-  margin: 20px 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-}
-
-.poll-reminder-icon {
-  font-size: 1.8rem;
-  flex-shrink: 0;
-}
-
-.poll-reminder-content h4 {
-  color: #d68910;
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
-}
-
-.poll-reminder-content p {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #856404;
-}
-
-@media print {
-  .print-button {
-    display: none;
-  }
-  
-  body {
-    background: white;
-  }
-  
-  .container {
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .workshop-content {
-    grid-template-columns: 1fr;
-  }
-  .workflow-steps {
-    padding: 15px;
-  }
-  .step {
-    padding: 15px 15px 15px 40px;
-  }
-  .step-number {
-    width: 32px;
-    height: 32px;
-    left: -5px;
-    font-size: 1rem;
-  }
-  .checklist-item-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .button-group {
-    width: 100%;
-    margin-top: 10px;
-  }
-  .button-group button {
-    flex: 1;
-  }
-  .main-navigation {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .quick-reference-grid {
-    grid-template-columns: 1fr;
-  }
-}
 </style>
 </head>
 <body>
-
-<div class="container">
-  <h1>Portfolio Checklist Game and Document Your Practice</h1>
-  <p style="text-align: center; font-size: 1.2rem; color: #666;">Ensure Your Portfolio Meets Assessment Criteria</p>
-
-  <!-- Workshop Structure Overview -->
-  <div style="background: #f5f5f5; padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px dashed #666;">
-    <h3 style="text-align: center; margin-top: 0; color: #333;">Workshop Structure (2.5 hours)</h3>
-    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 15px;">
-      <div style="flex: 1; min-width: 180px; background: var(--inclass-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--inclass);">
-        <h4 style="margin-top: 0; color: var(--inclass); font-size: 1rem;">TASK 1 (60 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document + Upload</p>
-      </div>
-      <div style="flex: 1; min-width: 180px; background: var(--homework-banner); padding: 12px; border-radius: 8px; border-left: 5px solid var(--homework);">
-        <h4 style="margin-top: 0; color: var(--homework); font-size: 1rem;">TASK 2 (60 mins)</h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">Checklist + Document + Upload</p>
-      </div>
-      <div style="flex: 1; min-width: 180px; background: var(--final-light); padding: 12px; border-radius: 8px; border-left: 5px solid var(--final);">
-        <h4 style="margin-top: 0; color: var(--final); font-size: 1rem;">TASK 3 <span class="take-home-badge">Take Home</span></h4>
-        <p style="margin-bottom: 0; font-size: 0.9rem;">PDF Builder Guide</p>
-      </div>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Digital Skills · Term 2 · Week 9 · IELS Level 5</div>
+      <h1>Portfolio Checklist Game<br><em>&amp; Document Your Practice</em></h1>
     </div>
+    <div class="meta"><strong>2 cycles ↓</strong>then PDF guide (take home)</div>
+  </header>
+  <div class="progress-wrap">
+    <div class="progress-label"><span>Your progress</span><span id="progText">0%</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
   </div>
+  <nav class="nav-block" id="nav">
+    <button class="nav-btn active" data-c="ink" data-target="overview">Overview<small>Start here</small></button>
+    <button class="nav-btn" data-c="teal" data-target="task1">Task 1<small>First cycle · 60 min</small></button>
+    <button class="nav-btn" data-c="pink" data-target="task2">Task 2<small>Second cycle · 60 min</small></button>
+    <button class="nav-btn" data-c="purple" data-target="task3">Task 3<small>PDF Builder 📄</small></button>
+  </nav>
 
-  <!-- Progress bar -->
-  <div class="progress-bar-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+  <div class="rule"></div>
 
-  <!-- Block-based navigation -->
-  <div class="main-navigation">
-    <div class="nav-block nav-overview" data-section="overview">
-      <h3>Overview</h3>
-      <p>Introduction</p>
+  <section class="section active" id="overview">
+    <div class="section-banner bg-ink">
+      <div class="num">Overview</div>
+      <div class="title">📋 Key Considerations for Your Portfolio</div>
     </div>
-    <div class="nav-block nav-task1" data-section="task1">
-      <h3>Task 1</h3>
-      <p>First Cycle (60 mins)</p>
+    <p class="intro">Check your portfolio meets the assessment criteria.<br>Make it tell your story clearly and creatively.</p>
+    <h2>How it works · 2.5 hours</h2>
+    <div class="cards">
+      <div class="card teal link" data-goto="task1"><div class="icon">🔁</div><div class="label">Task 1 · 60 min</div><p>Choose ONE checklist area → improve → document → upload.</p></div>
+      <div class="card pink link" data-goto="task2"><div class="icon">🔁</div><div class="label">Task 2 · 60 min</div><p>Choose a DIFFERENT area → improve → document → upload.</p></div>
+      <div class="card purple link" data-goto="task3"><div class="icon">📄</div><div class="label">Task 3 · Take home</div><p>Use the PDF Builder to make your portfolio PDF.</p></div>
     </div>
-    <div class="nav-block nav-task2" data-section="task2">
-      <h3>Task 2</h3>
-      <p>Second Cycle (60 mins)</p>
+    <h2>You will learn to</h2>
+    <ul><li>Review your portfolio against the criteria</li><li>Find areas to improve</li><li>Reference sources correctly</li><li>Document your creative process</li><li>Put your pages into a PDF</li></ul>
+    <h2>Quick reference · previous workshops</h2>
+    <div class="ref-links">
+      <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank" rel="noopener"><b>Photocopier &amp; Scanner Editing</b><small>Threshold · Text on Path · Blend Modes</small></a>
+      <a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank" rel="noopener"><b>Moving Elements &amp; Displacement</b><small>Content-Aware · Lasso Tools · Patch Tool</small></a>
+      <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank" rel="noopener"><b>Monoprint Digital Development</b><small>Threshold · Layer Masks · Transparency</small></a>
+      <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank" rel="noopener"><b>Enlarging Details &amp; Artist Links</b><small>Selection Tools · Noise Filter · Colour Layers</small></a>
+      <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank" rel="noopener"><b>Stencils &amp; Digital Brushes</b><small>Threshold · Define Brush · Stencil Cutting</small></a>
+      <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank" rel="noopener"><b>Generative Fill Subheadings</b><small>Generative Fill · AI Prompts · Subheadings</small></a>
+      <a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank" rel="noopener"><b>Pattern Brushes &amp; Graphic Elements</b><small>Define Pattern · Pen Tool · Visual Links</small></a>
+      <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank" rel="noopener"><b>Handwriting to Digital Font</b><small>Calligraphr · Custom Font · Typography</small></a>
+      <a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank" rel="noopener"><b>Fun Foam Printmaking</b><small>Levels · Select Similar · Multiply Mode</small></a>
     </div>
-    <div class="nav-block nav-task3" data-section="task3">
-      <h3>Task 3</h3>
-      <p>PDF Builder 📄</p>
+    <h2>Recap: how to reference an artist</h2>
+    <div class="box pink">
+      <strong>📚 Harvard style for images</strong>
+      <p style="margin:6px 0">Artist's Last Name, First Initial. (Year). <em>Title of the work</em> [Image].</p><p style="margin:0"><strong>Example:</strong> Turner, L. (2018). <em>Abstract concepts in digital art</em> [Image].</p><p style="margin:6px 0 0">Good referencing shows your research skills. It respects other artists' work.</p>
     </div>
-  </div>
-  
-  <!-- ==================== OVERVIEW SECTION ==================== -->
-  <div id="overview" class="content-section active">
-    <div class="workshop-overview">
-      <div class="workshop-header">
-        <h3>Workshop Overview</h3>
-      </div>
-      
-      <div class="workshop-title">
-        <h3>Key Considerations for Your Portfolio</h3>
-      </div>
-      
-      <div class="workshop-content">
-        <div>
-          <p><strong>Objective:</strong> This session is about ensuring your portfolio meets the assessment criteria and tells your story clearly and creatively.</p>
-          <p>You will work through a checklist game to review key areas of your portfolio, then document your progress with screenshots and reflection notes.</p>
-          <p><strong>How it works:</strong> You'll complete two cycles. In each cycle, you'll choose one area from the checklist to review, make improvements to your portfolio, document your progress, and upload to Padlet.</p>
-          <p><strong>Take-Home Resource:</strong> Task 3 provides a guide for using the Portfolio PDF Builder tool to compile your pages into a professional PDF ready for submission.</p>
-        </div>
-        
-        <div class="workshop-learning-points">
-          <h4 class="learning-points-title">You Will Learn To:</h4>
-          <ul class="learning-points-list">
-            <li class="learning-points-item">Review portfolio against criteria</li>
-            <li class="learning-points-item">Identify areas for improvement</li>
-            <li class="learning-points-item">Reference sources correctly</li>
-            <li class="learning-points-item">Document your creative process</li>
-            <li class="learning-points-item">Compile pages into a PDF</li>
-          </ul>
-        </div>
-      </div>
+    <div class="box teal">
+      <strong>🔤 Typography: "If your text is shouting, your design can't breathe."</strong>
+      <ul><li><strong>Body text:</strong> 12–14pt, left- or right-aligned in blocks</li><li><strong>Subtitles:</strong> use a different <em>style</em>, not just a bigger size</li><li><strong>Create flow:</strong> text guides the eye – it doesn't block it</li><li><strong>Suggested fonts:</strong> Orator ST, Andale Mono, Avenir Next Condensed, Helvetica Neue, Bodoni, Didot, Futura</li></ul>
+    </div>
+    <div class="pager">
+      <button class="btn next" data-goto="task1">Next: Task 1 →</button>
     </div>
 
-    <!-- Quick Reference: Previous Workshops -->
-    <div class="quick-reference-section">
-      <div class="quick-reference-header" onclick="toggleQuickReference()">
-        <h3>📚 Quick Reference: Previous Workshops</h3>
-        <span class="quick-reference-toggle" id="qrToggle">+</span>
+  </section>
+
+  <section class="section" id="task1">
+    <div class="section-banner bg-teal">
+      <div class="num">Task 1</div>
+      <div class="title">🔁 First Cycle — Review, Improve, Document, Upload</div>
+    </div>
+    <div class="tutor"><strong>👩‍🏫 Tutor: run a poll at the start</strong><br>Ask: "Which checklist area will you focus on for Task 1?" Use poll options that match the checklist (e.g. Subheadings, Research, Typography, Referencing).</div>
+    <div class="box teal">
+      <strong>⏱️ Time</strong>
+      <ul><li><strong>45 min:</strong> choose ONE area. Improve your portfolio.</li><li><strong>15 min:</strong> document your progress and upload to Padlet.</li></ul>
+    </div>
+    <h2>Step 1 · Choose ONE area</h2>
+    <p>Click <strong>Example</strong> to see good work. Click <strong>Complete</strong> when you're happy.</p>
+    <div class="checklist teal nocount" id="game">
+      <div class="head"><span>Portfolio Checklist — choose ONE area</span><span id="gameCount">0 / 12 complete</span></div>
+      <div class="subtabs"><button class="on" data-page="introChecklist">Introduction Page</button><button data-page="mainChecklist">Main Checklist</button></div>
+      <div class="gpage" id="introChecklist">
+      <div class="game-item" data-example="intro-title">
+        <div class="gi-head"><div class="gi-text"><strong>Project Title:</strong> Does your introduction have a clear, engaging title that reflects your project?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>A good project title should:</strong></p><ul><li>Be creative and memorable</li><li>Reflect your theme or concept</li><li>Set the tone for your portfolio</li></ul><img src="examples/intro_title_example.jpg" alt="Project Title" class="zoom"></div>
       </div>
-      <div class="quick-reference-content" id="qrContent">
-        <div class="quick-reference-grid">
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank">
-              <h4>Photocopier & Scanner Editing</h4>
-              <p>Create high-contrast effects with Threshold, convert selections to paths, add text on path effects</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Threshold</span>
-                <span class="quick-ref-tag">Text on Path</span>
-                <span class="quick-ref-tag">Blend Modes</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank">
-              <h4>Moving Elements & Displacement</h4>
-              <p>Content-Aware Move tool, selection tools for fashion elements, Patch tool and blend modes</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Content-Aware</span>
-                <span class="quick-ref-tag">Lasso Tools</span>
-                <span class="quick-ref-tag">Patch Tool</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank">
-              <h4>Monoprint Digital Development</h4>
-              <p>Digitize monoprints, apply Threshold, remove white areas, use layer masks and blend modes</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Threshold</span>
-                <span class="quick-ref-tag">Layer Masks</span>
-                <span class="quick-ref-tag">Transparency</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank">
-              <h4>Enlarging Details & Artist Links</h4>
-              <p>Select and enlarge key details, add noise filters, apply colour effects, create visual connections</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Selection Tools</span>
-                <span class="quick-ref-tag">Noise Filter</span>
-                <span class="quick-ref-tag">Colour Layers</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank">
-              <h4>Stencils & Digital Brushes</h4>
-              <p>Turn images into stencils using Threshold, cut stencil shapes into textures, create custom brushes</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Threshold</span>
-                <span class="quick-ref-tag">Define Brush</span>
-                <span class="quick-ref-tag">Stencil Cutting</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank">
-              <h4>Generative Fill Subheadings</h4>
-              <p>Use AI to create visual subheading backgrounds, Content-Aware Fill, prompt writing for textures</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Generative Fill</span>
-                <span class="quick-ref-tag">AI Prompts</span>
-                <span class="quick-ref-tag">Subheadings</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank">
-              <h4>Pattern Brushes & Graphic Elements</h4>
-              <p>Create pattern brushes from drawings, clean up images, apply patterns along paths</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Define Pattern</span>
-                <span class="quick-ref-tag">Pen Tool</span>
-                <span class="quick-ref-tag">Visual Links</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank">
-              <h4>Handwriting to Digital Font</h4>
-              <p>Create custom font from handwriting using Calligraphr, clean letterforms, install and use in designs</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Calligraphr</span>
-                <span class="quick-ref-tag">Custom Font</span>
-                <span class="quick-ref-tag">Typography</span>
-              </div>
-            </a>
-          </div>
-          
-          <div class="quick-ref-item">
-            <a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank">
-              <h4>Fun Foam Printmaking</h4>
-              <p>Edit scanned prints, adjust Levels, remove backgrounds, use blending modes on research pages</p>
-              <div class="quick-ref-tags">
-                <span class="quick-ref-tag">Levels</span>
-                <span class="quick-ref-tag">Select Similar</span>
-                <span class="quick-ref-tag">Multiply Mode</span>
-              </div>
-            </a>
-          </div>
-        </div>
+      <div class="game-item" data-example="intro-context">
+        <div class="gi-head"><div class="gi-text"><strong>Project Context:</strong> Have you clearly explained the background and context of your project?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Context should include:</strong></p><ul><li>What inspired your project</li><li>The problem or theme you're exploring</li><li>Your personal connection to the subject</li></ul><img src="examples/intro_context_example.jpg" alt="Project Context" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="intro-visual">
+        <div class="gi-head"><div class="gi-text"><strong>Visual Interest:</strong> Does your introduction include imagery that captures attention and helps show your theme?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Strong visuals should:</strong></p><ul><li>Create immediate impact</li><li>Relate to your theme</li><li>Be high quality images</li></ul><img src="examples/intro_visual_example.jpg" alt="Visual Interest" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="intro-roadmap">
+        <div class="gi-head"><div class="gi-text"><strong>Portfolio Roadmap:</strong> Does your introduction give a clear roadmap of what follows?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>A roadmap helps the viewer:</strong></p><ul><li>Understand the structure of your portfolio</li><li>Know what to expect</li><li>Navigate your work easily</li></ul><img src="examples/intro_flow_example.jpg" alt="Portfolio Roadmap" class="zoom"></div>
+      </div>
+        <div class="celebrate" id="introDone">🎉 Great job! Introduction Page checklist complete! 🎉</div>
+      </div>
+      <div class="gpage" id="mainChecklist" style="display:none">
+      <div class="game-item" data-example="subheadings">
+        <div class="gi-head"><div class="gi-text"><strong>Subheadings &amp; Layout:</strong> Are subheadings clear, concise and creative? Have you included graphic elements?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Good subheadings:</strong></p><ul><li>Define what part of your research you're exploring</li><li>Help expand creative ideas</li><li>Include visual hierarchy</li></ul><p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank" rel="noopener">Generative Fill Subheadings workshop</a></p><img src="examples/subheadings_example.jpg" alt="Subheadings &amp; Layout" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="research">
+        <div class="gi-head"><div class="gi-text"><strong>Research &amp; Inspiration:</strong> Have you included quotes to support your knowledge?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Strong research pages show:</strong></p><ul><li>Different research sources</li><li>Your own responses to what you found</li><li>Quotes that support your ideas</li></ul><p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank" rel="noopener">Enlarging Details &amp; Artist Links workshop</a></p><img src="examples/research_example.jpg" alt="Research &amp; Inspiration" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="design">
+        <div class="gi-head"><div class="gi-text"><strong>Design Development:</strong> Do your pages show a relationship between 2D and 3D ideas? Have you included research links?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Design development should include:</strong></p><ul><li>Both 2D and 3D ideas</li><li>A mix of whole designs and detail elements</li><li>Research links supporting development</li></ul><p><strong>Need help with textures?</strong> See <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank" rel="noopener">Monoprint workshop</a> or <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank" rel="noopener">Stencils &amp; Brushes workshop</a></p><img src="examples/design_example.jpg" alt="Design Development" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="refinement">
+        <div class="gi-head"><div class="gi-text"><strong>Refinement &amp; Selection:</strong> Do you show similar but different design ideas, to select, edit and inform your final lineup?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Refinement pages should show:</strong></p><ul><li>A selecting and editing process</li><li>Various similar but different ideas</li><li>Ticks or marks to show decisions</li></ul><img src="examples/refinement_example.jpg" alt="Refinement &amp; Selection" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="referencing">
+        <div class="gi-head"><div class="gi-text"><strong>Referencing:</strong> Have you properly credited your sources? <a href="https://hsstokes.github.io/Harvard-Referencing-Guide/" target="_blank" rel="noopener">(Harvard Referencing Guide)</a></div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Proper referencing includes:</strong></p><ul><li>Artist name and year</li><li>Title of work in italics</li><li>[Image] designation</li></ul><p><strong>Need help adding text?</strong> See <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank" rel="noopener">Text on Path workshop</a></p><img src="examples/referencing_example.jpg" alt="Referencing" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="color">
+        <div class="gi-head"><div class="gi-text"><strong>Colour Palette:</strong> Have you chosen a relevant palette with research links to support your ideas?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>A strong colour palette:</strong></p><ul><li>Connects to your research theme</li><li>Shows colour theory understanding</li><li>Links to inspiration sources</li></ul><img src="examples/color_palette_example.jpg" alt="Colour Palette" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="typography">
+        <div class="gi-head"><div class="gi-text"><strong>Typography:</strong> Is your font choice consistent, creative and right for your theme? Is your text sized correctly?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Good typography:</strong></p><ul><li><strong>Body text:</strong> 12–14pt maximum, left- or right-aligned in blocks</li><li><strong>Subtitles:</strong> a different <em>style</em> (weight, font, colour) – not just bigger</li><li><strong>Hierarchy:</strong> contrast through weight, spacing and colour</li><li><strong>Consistency:</strong> ONE heading font + ONE body font</li><li><strong>Flow:</strong> text guides the eye, it doesn't block it</li><li>Reflects your project theme</li></ul><p>"If your text is shouting, your design can't breathe."</p><p><strong>Suggested fonts:</strong> Orator ST, Andale Mono, Avenir Next Condensed, Helvetica Neue, Bodoni, Didot, Futura</p><p><strong>Want a unique font?</strong> See <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank" rel="noopener">Handwriting to Digital Font workshop</a></p><img src="examples/typography_example.jpg" alt="Typography" class="zoom"></div>
+      </div>
+      <div class="game-item" data-example="visuals">
+        <div class="gi-head"><div class="gi-text"><strong>Visual Elements:</strong> Do your illustrations, photographs and diagrams support your message?</div><div class="gi-btns"><button class="gi-ex">Example</button><button class="gi-done">Complete</button></div></div>
+        <div class="gi-body"><p><strong>Strong visual elements:</strong></p><ul><li>Support and enhance your content</li><li>Are high quality</li><li>Create visual interest</li></ul><p><strong>Need more visual interest?</strong></p><ul><li><a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank" rel="noopener">Pattern Brushes workshop</a> – create visual links</li><li><a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank" rel="noopener">Fun Foam Printmaking</a> – add handmade textures</li><li><a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank" rel="noopener">Moving Elements workshop</a> – reposition and blend</li></ul><img src="examples/visual_elements_example.jpg" alt="Visual Elements" class="zoom"></div>
+      </div>
+        <div class="celebrate" id="mainDone">🎉 Excellent! Main Checklist complete! 🎉</div>
       </div>
     </div>
-
-    <!-- Harvard Referencing Recap -->
-    <h2>Recap: How to Reference an Artist</h2>
-    
-    <div class="reference-box">
-      <h4>📚 Harvard Referencing Style for Images</h4>
-      <p>Have you properly credited your sources? Use this format for citing artists:</p>
-      <p><strong>Format:</strong></p>
-      <code>Artist's Last Name, First Initial. (Year). <em>Title of the work</em> [Image].</code>
-      <p><strong>Example:</strong></p>
-      <code>Turner, L. (2018). <em>Abstract concepts in digital art</em> [Image].</code>
-    </div>
-
-    <div class="important-notice">
-      <strong>Important:</strong> Proper referencing shows your research skills and respects the work of other artists and designers.
-    </div>
-
-    <!-- Typography Guidelines -->
-    <div class="tip-box" style="border-color: #9c27b0; background: linear-gradient(135deg, #f3e5f5 0%, #fff 100%);">
-      <h4 style="color: #9c27b0;">🔤 Typography Rules: "If your text is shouting, your design can't breathe."</h4>
-      <p><strong>Body text:</strong> 12-14pt, left or right-aligned in blocks</p>
-      <p><strong>Subtitles:</strong> Use different <em>style</em>, not just bigger size</p>
-      <p><strong>Create flow, not obstacles</strong> — text should guide the eye across the page, not dominate it.</p>
-      <p style="margin-bottom: 0;"><strong>Suggested fonts:</strong> Orator ST, Andale Mono, Avenir Next Condensed, Helvetica Neue, Bodoni, Didot, Futura</p>
-    </div>
-
-    <div class="nav-buttons">
-      <button class="nav-btn prev-btn" disabled>Previous</button>
-      <button class="nav-btn next-btn" onclick="goToSection('task1')">Next: Task 1</button>
-    </div>
-  </div>
-
-  <!-- ==================== TASK 1: FIRST CYCLE ==================== -->
-  <div id="task1" class="content-section">
-    <div class="section-banner inclass-banner">
-      TASK 1: First Cycle — Review, Improve, Document, Upload (60 minutes)
-    </div>
-
-    <!-- Poll Reminder -->
-    <div class="poll-reminder">
-      <div class="poll-reminder-icon">📊</div>
-      <div class="poll-reminder-content">
-        <h4>Tutor: Run a Poll at the Start</h4>
-        <p>Ask students: "Which checklist area will you focus on for Task 1?" Use the poll options to match the main checklist categories (e.g., Subheadings, Research, Typography, Referencing, etc.)</p>
+    <h2>Step 2 · Document your progress (15 min)</h2>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-teal">1</span>Export your improved page as a JPEG<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ul><li>Open the page you improved</li><li>Go to <span class="path">File › Export › Export As…</span> › Format: <strong>JPG</strong></li><li>Click <strong>Export</strong></li></ul>
       </div>
     </div>
-
-    <div class="time-allocation">
-      <h4>⏱️ Time Breakdown for Task 1</h4>
-      <ul>
-        <li><strong>45 minutes:</strong> Choose ONE area from the checklist below and make improvements to your portfolio</li>
-        <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
-      </ul>
-    </div>
-
-    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      <strong>Step 1:</strong> Choose ONE suggestion from the checklist below to focus on. Click "Example" to see what good work looks like.
-    </p>
-
-    <!-- Checklist Game -->
-    <div class="checklist-game-container">
-      <div class="checklist-game-header">
-        <h3>Portfolio Checklist — Choose ONE Area</h3>
-        <span class="checklist-progress" id="checklistProgress">0 / 12 Complete</span>
-      </div>
-
-      <!-- Tabs -->
-      <div class="checklist-tabs">
-        <button class="checklist-tab active" onclick="showChecklistPage('introChecklist')">Introduction Page</button>
-        <button class="checklist-tab" onclick="showChecklistPage('mainChecklist')">Main Checklist</button>
-      </div>
-
-      <!-- Introduction Page Checklist -->
-      <div id="introChecklist" class="checklist-page active">
-        <div class="checklist-item-game" data-example="intro-title">
-          <div class="checklist-item-top">
-            <span><strong>Project Title:</strong> Does your introduction have a clear, engaging title that reflects your project?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>A good project title should:</strong></p>
-            <ul>
-              <li>Be creative and memorable</li>
-              <li>Reflect your theme or concept</li>
-              <li>Set the tone for your portfolio</li>
-            </ul>
-            <img src="examples/intro_title_example.jpg" alt="Example of good introduction title" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="intro-context">
-          <div class="checklist-item-top">
-            <span><strong>Project Context:</strong> Have you clearly explained the background and context of your project?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Context should include:</strong></p>
-            <ul>
-              <li>What inspired your project</li>
-              <li>The problem or theme you're exploring</li>
-              <li>Your personal connection to the subject</li>
-            </ul>
-            <img src="examples/intro_context_example.jpg" alt="Example of good context explanation" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="intro-visual">
-          <div class="checklist-item-top">
-            <span><strong>Visual Interest:</strong> Does your introduction include imagery that captures attention and helps visualise your theme?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Strong visuals should:</strong></p>
-            <ul>
-              <li>Create immediate impact</li>
-              <li>Relate to your theme</li>
-              <li>Be high quality images</li>
-            </ul>
-            <img src="examples/intro_visual_example.jpg" alt="Example of good visual interest" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="intro-roadmap">
-          <div class="checklist-item-top">
-            <span><strong>Portfolio Roadmap:</strong> Does your introduction provide a clear roadmap of what follows?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>A roadmap helps the viewer:</strong></p>
-            <ul>
-              <li>Understand the structure of your portfolio</li>
-              <li>Know what to expect</li>
-              <li>Navigate your work easily</li>
-            </ul>
-            <img src="examples/intro_flow_example.jpg" alt="Example of good portfolio roadmap" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div id="introCompleteMessage" class="completion-message">
-          🎉 Great job! You've completed the Introduction Page checklist! 🎉
-        </div>
-      </div>
-
-      <!-- Main Checklist -->
-      <div id="mainChecklist" class="checklist-page">
-        <div class="checklist-item-game" data-example="subheadings">
-          <div class="checklist-item-top">
-            <span><strong>Subheadings & Layout:</strong> Are subheadings clear, concise, and creative? Have you included graphic elements?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Good subheadings:</strong></p>
-            <ul>
-              <li>Define what aspect of research you're exploring</li>
-              <li>Help expand creative ideas</li>
-              <li>Include visual hierarchy</li>
-            </ul>
-            <p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Generative-Fill-Subheadings/" target="_blank">Generative Fill Subheadings workshop</a></p>
-            <img src="examples/subheadings_example.jpg" alt="Example of good subheadings & layout" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="research">
-          <div class="checklist-item-top">
-            <span><strong>Research & Inspiration:</strong> Have you included quotes to support your knowledge?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Strong research pages show:</strong></p>
-            <ul>
-              <li>Diverse research sources</li>
-              <li>Your own responses to what you've found</li>
-              <li>Quotes that support your ideas</li>
-            </ul>
-            <p><strong>Need help?</strong> See <a href="https://hsstokes.github.io/Expanding-details-and-artists-link-within-Research-Pages/" target="_blank">Enlarging Details & Artist Links workshop</a></p>
-            <img src="examples/research_example.jpg" alt="Example of good research & inspiration" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="design">
-          <div class="checklist-item-top">
-            <span><strong>Design Development:</strong> Do your pages show a relationship between 2D and 3D ideas? Have you included research links to support your design development?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Design development should include:</strong></p>
-            <ul>
-              <li>Both 2D and 3D ideas</li>
-              <li>A mix of whole designs and detail elements</li>
-              <li>Research links supporting development</li>
-            </ul>
-            <p><strong>Need help with textures?</strong> See <a href="https://hsstokes.github.io/Monoprint-Techniques-and-Digital-Development/" target="_blank">Monoprint workshop</a> or <a href="https://hsstokes.github.io/Creating-Stencils---Digital-Brushes/" target="_blank">Stencils & Brushes workshop</a></p>
-            <img src="examples/design_example.jpg" alt="Example of good design development" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="refinement">
-          <div class="checklist-item-top">
-            <span><strong>Refinement & Selection:</strong> Do you show a variety of similar but different design ideas from which to select, edit, and inform your final lineup?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Refinement pages should show:</strong></p>
-            <ul>
-              <li>A selecting and editing process</li>
-              <li>Various similar but different ideas</li>
-              <li>Ticks or marks to show decisions</li>
-            </ul>
-            <img src="examples/refinement_example.jpg" alt="Example of good refinement & selection" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="referencing">
-          <div class="checklist-item-top">
-            <span><strong>Referencing:</strong> Have you properly credited your sources? <a href="https://hsstokes.github.io/Harvard-Referencing-Guide/" target="_blank">(Harvard Referencing Guide)</a></span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Proper referencing includes:</strong></p>
-            <ul>
-              <li>Artist name and year</li>
-              <li>Title of work in italics</li>
-              <li>[Image] designation</li>
-            </ul>
-            <p><strong>Need help adding text?</strong> See <a href="https://hsstokes.github.io/Digital-Manipulation-of-Photocopier-Experiments/" target="_blank">Text on Path workshop</a></p>
-            <img src="examples/referencing_example.jpg" alt="Example of good referencing" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="color">
-          <div class="checklist-item-top">
-            <span><strong>Colour Palette:</strong> Have you selected a relevant palette and included research links to support your ideas?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>A strong colour palette:</strong></p>
-            <ul>
-              <li>Connects to your research theme</li>
-              <li>Shows colour theory understanding</li>
-              <li>Links to inspiration sources</li>
-            </ul>
-            <img src="examples/color_palette_example.jpg" alt="Example of good color palette" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="typography">
-          <div class="checklist-item-top">
-            <span><strong>Typography:</strong> Is your font choice consistent, creative and appropriate for your theme? Is your text sized correctly?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p style="font-size: 1.1rem; font-weight: bold; color: #9c27b0; margin-bottom: 15px; font-style: italic;">"If your text is shouting, your design can't breathe."</p>
-            <p><strong>Good typography:</strong></p>
-            <ul>
-              <li><strong>Body text:</strong> 12-14pt maximum, left or right-aligned in blocks</li>
-              <li><strong>Subtitles:</strong> Use a different <em>style</em> (weight, font, colour) — not just bigger size</li>
-              <li><strong>Hierarchy:</strong> Create contrast through weight, spacing, and colour — avoid size-only changes</li>
-              <li><strong>Consistency:</strong> Stick to ONE heading font + ONE body font throughout</li>
-              <li><strong>Flow:</strong> Text should guide the eye across the page, not dominate or block it</li>
-              <li>Reflects your project theme</li>
-            </ul>
-            <p><strong>Suggested fonts:</strong> Orator ST, Andale Mono, Avenir Next Condensed, Helvetica Neue, Bodoni, Didot, Futura</p>
-            <p><strong>Want a unique font?</strong> See <a href="https://hsstokes.github.io/Handwriting-to-Digital-Text/" target="_blank">Handwriting to Digital Font workshop</a></p>
-            <img src="examples/typography_example.jpg" alt="Example of good typography" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div class="checklist-item-game" data-example="visuals">
-          <div class="checklist-item-top">
-            <span><strong>Visual Elements:</strong> Do your illustrations, photographs, and diagrams enhance your message?</span>
-            <div class="button-group">
-              <button class="example-btn" onclick="toggleGameExample(this)">Example</button>
-              <button class="complete-btn" onclick="markGameComplete(this)">Complete</button>
-            </div>
-          </div>
-          <div class="example-content">
-            <p><strong>Strong visual elements:</strong></p>
-            <ul>
-              <li>Support and enhance your content</li>
-              <li>Are high quality</li>
-              <li>Create visual interest</li>
-            </ul>
-            <p><strong>Need more visual interest?</strong> Try techniques from:</p>
-            <ul>
-              <li><a href="https://hsstokes.github.io/Pattern-Brushes---Graphic-Elements/" target="_blank">Pattern Brushes workshop</a> — create visual links</li>
-              <li><a href="https://hsstokes.github.io/Print-Making-with-Fun-Foam/" target="_blank">Fun Foam Printmaking</a> — add handmade textures</li>
-              <li><a href="https://hsstokes.github.io/Digital-Manipulation-Moving-Elements-Displacement/" target="_blank">Moving Elements workshop</a> — reposition and blend</li>
-            </ul>
-            <img src="examples/visual_elements_example.jpg" alt="Example of good visual elements" onclick="openModal(this.src)">
-          </div>
-        </div>
-
-        <div id="mainCompleteMessage" class="completion-message">
-          🎉 Excellent! You've completed the Main Checklist! 🎉
-        </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-teal">2</span>Add it to the Progress Tool<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p><a class="btn blue" href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" rel="noopener">Open Progress Tool ↗</a></p><ul><li>Type your name</li><li>Upload your JPEG(s)</li><li>Add a short caption</li></ul>
       </div>
     </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-teal">3</span>Add notes<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Write short notes:</p><ul><li>Which checklist area you chose</li><li>What you changed</li><li>What worked well / what needs more work</li></ul>    <div class="box blue">
+      <strong>💬 Useful phrases</strong>
+      <ul><li>I improved … by …</li><li>This worked because …</li><li>Next, I need to …</li></ul>
+    </div>
 
-    <!-- Document Your Progress Section -->
-    <h2>Step 2: Document Your Progress</h2>
-
-    <p>After making improvements to your chosen area, document your work using the Progress Documentation Tool.</p>
-
-    <div class="workflow-box" style="border-color: var(--inclass);">
-      <div class="workflow-header" style="background: var(--inclass);">
-        <h3>How to Document (15 minutes)</h3>
-      </div>
-      <div class="workflow-steps">
-        <div class="step">
-          <div class="step-number" style="background: var(--inclass);">1</div>
-          <div class="step-title" style="color: var(--inclass);">Take Screenshot of Your Improvement</div>
-          <div class="step-content">
-            <ul>
-              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span></li>
-              <li><strong>Windows:</strong> Press <span class="shortcut">Windows + Shift + S</span></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--inclass);">2</div>
-          <div class="step-title" style="color: var(--inclass);">Add Notes</div>
-          <div class="step-content">
-            <p>Write brief notes about:</p>
-            <ul>
-              <li>Which checklist area you focused on</li>
-              <li>What changes you made</li>
-              <li>What worked well / what needs more work</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--inclass);">3</div>
-          <div class="step-title" style="color: var(--inclass);">Upload to Padlet</div>
-          <div class="step-content">
-            <p>Save your progress report as JPEG and upload to Padlet with your name as the title.</p>
-          </div>
-        </div>
       </div>
     </div>
-
-    <!-- Progress Documentation Tool Link -->
-    <div style="background: var(--inclass-light); padding: 25px; border-radius: 12px; border: 2px solid var(--inclass); margin: 30px 0; text-align: center;">
-      <h3 style="color: var(--inclass); margin-top: 0;">📸 Progress Documentation Tool</h3>
-      <p>Use this interactive tool to capture and organise your progress screenshots with notes.</p>
-      <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" style="display: inline-block; background: var(--inclass); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 10px;">
-        Open Progress Tool →
-      </a>
-    </div>
-
-    <!-- Upload for Task 1 -->
-    <div style="background: linear-gradient(135deg, var(--inclass-light) 0%, #fff 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--inclass);">
-      <h3 style="color: var(--inclass); text-align: center; margin-top: 0; margin-bottom: 20px;">📤 Upload Task 1 Progress Report</h3>
-      <p style="text-align: center;">Save your documentation as JPEG, add your name as the title, then upload.</p>
-      <div style="text-align: center; margin-top: 15px;">
-        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--inclass); color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(10, 128, 128, 0.4);">
-          Upload Task 1 to Padlet →
-        </a>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-teal">4</span>Download and upload to Padlet<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ol><li>Click <strong>Download Progress Report</strong></li><li>Go to Padlet. Add your name as the title.</li><li>Upload your report</li></ol><p><a class="btn gold" href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" rel="noopener">Upload Task 1 to Padlet ↗</a></p>
       </div>
     </div>
-
-    <div class="tip-box">
-      <h4>💡 Pro Tip</h4>
-      <p>Once you've uploaded Task 1, move on to Task 2 and choose a <strong>different</strong> area from the checklist to improve!</p>
+    <div class="stuck">
+      <div class="stuck-head">🆘 Stuck? Try this</div>
+      <div class="row"><div class="prob">I don’t know which area to choose.</div><div class="fix">Pick the area you feel least sure about. Click <strong>Example</strong> to compare.</div></div>
+      <div class="row"><div class="prob">How do I export my page?</div><div class="fix"><span class="path">File › Export › Export As…</span> › Format: <strong>JPG</strong> › <strong>Export</strong>.</div></div>
+      <div class="row"><div class="prob">I finished my area early.</div><div class="fix">Click <strong>Complete</strong>. Then choose another area.</div></div>
+    </div>
+    <div class="checklist teal" id="cl-task1">
+      <h3>Task 1 checklist</h3>
+      <label><input type="checkbox"><span>Chose ONE checklist area</span></label>
+      <label><input type="checkbox"><span>Improved my portfolio</span></label>
+      <label><input type="checkbox"><span>Exported my improved page as JPEG</span></label>
+      <label><input type="checkbox"><span>Added notes in the Progress Tool</span></label>
+      <label><input type="checkbox"><span>Uploaded to Padlet</span></label>
+    </div>
+    <div class="box teal">
+      <strong>💡 Tip</strong>
+      <p style="margin:6px 0 0">Uploaded Task 1? Move on to Task 2 and choose a <strong>different</strong> area!</p>
+    </div>
+    <div class="pager">
+      <button class="btn" data-goto="overview">← Overview</button>
+      <button class="btn next" data-goto="task2">Next: Task 2 →</button>
     </div>
 
-    <div class="nav-buttons">
-      <button class="nav-btn prev-btn" onclick="goToSection('overview')">Previous: Overview</button>
-      <button class="nav-btn next-btn" onclick="goToSection('task2')">Next: Task 2</button>
-    </div>
-  </div>
+  </section>
 
-  <!-- ==================== TASK 2: SECOND CYCLE ==================== -->
-  <div id="task2" class="content-section">
-    <div class="section-banner homework-banner">
-      TASK 2: Second Cycle — Review, Improve, Document, Upload (60 minutes)
+  <section class="section" id="task2">
+    <div class="section-banner bg-pink">
+      <div class="num">Task 2</div>
+      <div class="title">🔁 Second Cycle — Review, Improve, Document, Upload</div>
     </div>
-
-    <!-- Poll Reminder -->
-    <div class="poll-reminder">
-      <div class="poll-reminder-icon">📊</div>
-      <div class="poll-reminder-content">
-        <h4>Tutor: Run a Poll at the Start of Task 2</h4>
-        <p>Ask students: "Which checklist area will you focus on for Task 2?" Remind them to choose something different from Task 1.</p>
+    <div class="tutor"><strong>👩‍🏫 Tutor: run a poll at the start of Task 2</strong><br>Ask: "Which checklist area will you focus on for Task 2?" Remind students to choose something different from Task 1.</div>
+    <div class="box pink">
+      <strong>⏱️ Time</strong>
+      <ul><li><strong>45 min:</strong> choose a DIFFERENT area. Improve your portfolio.</li><li><strong>15 min:</strong> document your progress and upload to Padlet.</li></ul>
+    </div>
+    <h2>Step 1 · Choose a DIFFERENT area</h2>
+    <p>Choose a <strong>different</strong> area from Task 1. This way you improve more parts of your portfolio.</p>
+    <p><button class="btn" data-goto="task1">← View the checklist in Task 1</button></p>
+    <h2>Step 2 · Document your progress (15 min)</h2>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">1</span>Export your improved page as a JPEG<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ul><li>Open the page you improved</li><li>Go to <span class="path">File › Export › Export As…</span> › Format: <strong>JPG</strong></li><li>Click <strong>Export</strong></li></ul>
       </div>
     </div>
-
-    <div class="time-allocation">
-      <h4>⏱️ Time Breakdown for Task 2</h4>
-      <ul>
-        <li><strong>45 minutes:</strong> Choose a DIFFERENT area from the checklist and make improvements to your portfolio</li>
-        <li><strong>15 minutes:</strong> Document your progress (screenshots + notes) and upload to Padlet</li>
-      </ul>
-    </div>
-
-    <div class="important-notice">
-      <strong>Important:</strong> For Task 2, choose a <strong>different</strong> checklist area than the one you worked on in Task 1. This ensures you're making progress across multiple aspects of your portfolio.
-    </div>
-
-    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      <strong>Step 1:</strong> Return to the checklist and choose a DIFFERENT area to focus on.
-    </p>
-
-    <!-- Link back to checklist -->
-    <div style="background: #f8f8f8; padding: 20px; border-radius: 12px; border: 2px solid var(--homework); margin: 25px 0; text-align: center;">
-      <h3 style="color: var(--homework); margin-top: 0;">📋 Review the Checklist</h3>
-      <p>Go back to Task 1 to view the full checklist and choose your second area to improve.</p>
-      <button onclick="goToSection('task1')" style="background: var(--homework); color: white; padding: 12px 25px; border-radius: 8px; border: none; font-weight: bold; font-size: 1rem; cursor: pointer; margin-top: 10px;">
-        View Checklist in Task 1 →
-      </button>
-    </div>
-
-    <!-- Document Your Progress Section -->
-    <h2>Step 2: Document Your Progress</h2>
-
-    <p>After making improvements to your second chosen area, document your work.</p>
-
-    <div class="workflow-box" style="border-color: var(--homework);">
-      <div class="workflow-header" style="background: var(--homework);">
-        <h3>How to Document (15 minutes)</h3>
-      </div>
-      <div class="workflow-steps">
-        <div class="step">
-          <div class="step-number" style="background: var(--homework);">1</div>
-          <div class="step-title" style="color: var(--homework);">Take Screenshot of Your Improvement</div>
-          <div class="step-content">
-            <ul>
-              <li><strong>Mac:</strong> Press <span class="shortcut">Command (⌘) + Shift + 3</span></li>
-              <li><strong>Windows:</strong> Press <span class="shortcut">Windows + Shift + S</span></li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--homework);">2</div>
-          <div class="step-title" style="color: var(--homework);">Add Notes</div>
-          <div class="step-content">
-            <p>Write brief notes about:</p>
-            <ul>
-              <li>Which checklist area you focused on (different from Task 1)</li>
-              <li>What changes you made</li>
-              <li>What worked well / what needs more work</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--homework);">3</div>
-          <div class="step-title" style="color: var(--homework);">Upload to Padlet</div>
-          <div class="step-content">
-            <p>Save your progress report as JPEG and upload to Padlet with your name as the title.</p>
-          </div>
-        </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">2</span>Add it to the Progress Tool<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p><a class="btn blue" href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" rel="noopener">Open Progress Tool ↗</a></p><ul><li>Type your name</li><li>Upload your JPEG(s)</li><li>Add a short caption</li></ul>
       </div>
     </div>
-
-    <!-- Progress Documentation Tool Link -->
-    <div style="background: var(--homework-light); padding: 25px; border-radius: 12px; border: 2px solid var(--homework); margin: 30px 0; text-align: center;">
-      <h3 style="color: var(--homework); margin-top: 0;">📸 Progress Documentation Tool</h3>
-      <p>Use this interactive tool to capture and organise your progress screenshots with notes.</p>
-      <a href="https://hsstokes.github.io/Progress_Documentation/" target="_blank" style="display: inline-block; background: var(--homework); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 1.1rem; margin-top: 10px;">
-        Open Progress Tool →
-      </a>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">3</span>Add notes<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Write short notes:</p><ul><li>Which checklist area you chose (different from Task 1)</li><li>What you changed</li><li>What worked well / what needs more work</li></ul>    <div class="box blue">
+      <strong>💬 Useful phrases</strong>
+      <ul><li>I improved … by …</li><li>This worked because …</li><li>Next, I need to …</li></ul>
     </div>
 
-    <!-- Upload for Task 2 -->
-    <div style="background: linear-gradient(135deg, var(--homework-light) 0%, #fff 100%); padding: 25px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 30px 0; border: 3px solid var(--homework);">
-      <h3 style="color: var(--homework); text-align: center; margin-top: 0; margin-bottom: 20px;">📤 Upload Task 2 Progress Report</h3>
-      <p style="text-align: center;">Save your documentation as JPEG, add your name as the title, then upload.</p>
-      <div style="text-align: center; margin-top: 15px;">
-        <a href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" style="display: inline-block; background: var(--homework); color: white; padding: 15px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1.2rem; box-shadow: 0 5px 20px rgba(234, 55, 163, 0.4);">
-          Upload Task 2 to Padlet →
-        </a>
       </div>
     </div>
-
-    <div class="reminder-box">
-      <h4>📋 By the End of Task 2 You Should Have:</h4>
-      <ul>
-        <li>Two separate progress reports uploaded to Padlet</li>
-        <li>Each report focusing on a different checklist area</li>
-        <li>Screenshots showing your improvements</li>
-        <li>Notes explaining what you changed and learned</li>
-      </ul>
-    </div>
-
-    <div class="nav-buttons">
-      <button class="nav-btn prev-btn" onclick="goToSection('task1')">Previous: Task 1</button>
-      <button class="nav-btn next-btn" style="background: var(--final);" onclick="goToSection('task3')">Next: PDF Builder Guide</button>
-    </div>
-  </div>
-
-  <!-- ==================== TASK 3: PDF BUILDER GUIDE ==================== -->
-  <div id="task3" class="content-section">
-    <div class="section-banner final-banner">
-      TASK 3: PDF Builder Guide <span class="take-home-badge">Take Home Resource</span>
-    </div>
-
-    <div style="background: linear-gradient(135deg, #fff8e1 0%, #fff 100%); padding: 25px; border-radius: 15px; border: 3px solid #ffc107; margin: 25px 0; text-align: center;">
-      <h3 style="color: #f57c00; margin-top: 0;">📚 This is a Take-Home Resource</h3>
-      <p style="font-size: 1.1rem; margin-bottom: 0;">Use this guide when you're ready to compile your portfolio into a PDF for submission. You may not complete this in class, but it's here when you need it!</p>
-    </div>
-
-    <p style="font-size: 1.15rem; text-align: center; margin-bottom: 30px;">
-      When you're ready, use this guide to compile all your portfolio pages into a single PDF document.
-    </p>
-
-    <!-- PDF Builder Preview -->
-    <div class="pdf-builder-preview">
-      <h3>📄 Portfolio PDF Builder</h3>
-      <p>Upload your 24-30 A3 landscape pages, arrange them in order, and download as a professional PDF.</p>
-      
-      <div class="pdf-structure-grid">
-        <div class="pdf-structure-item">
-          <div class="num">1</div>
-          <div class="label">Title Page</div>
-          <div class="pages">Page 1</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">1</div>
-          <div class="label">Introduction</div>
-          <div class="pages">Page 2</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">~10</div>
-          <div class="label">Research</div>
-          <div class="pages">Pages 3-12</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">~10</div>
-          <div class="label">Development</div>
-          <div class="pages">Pages 13-22</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">1</div>
-          <div class="label">Similar/Different</div>
-          <div class="pages">Page 23</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">1</div>
-          <div class="label">Product Page</div>
-          <div class="pages">Page 24</div>
-        </div>
-        <div class="pdf-structure-item">
-          <div class="num">1</div>
-          <div class="label">Final Line-Up</div>
-          <div class="pages">Page 25</div>
-        </div>
-      </div>
-
-      <a href="https://hsstokes.github.io/Portfolio-PDF-Builder/" target="_blank" class="open-builder-btn">
-        Open PDF Builder Tool →
-      </a>
-    </div>
-
-    <!-- How to Export from Photoshop -->
-    <h2>Step 1: Export Pages from Photoshop</h2>
-
-    <div class="workflow-box" style="border-color: var(--final);">
-      <div class="workflow-header" style="background: var(--final);">
-        <h3>Exporting as JPEGs from Photoshop (300 ppi)</h3>
-      </div>
-      <div class="workflow-steps">
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">1</div>
-          <div class="step-title" style="color: var(--final);">Open Your Photoshop Document</div>
-          <div class="step-content">
-            <p>Make sure your page is finalised and ready to export. Each portfolio page should be a separate PSD file.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">2</div>
-          <div class="step-title" style="color: var(--final);">Check Your Resolution</div>
-          <div class="step-content">
-            <p>Go to <strong>Image → Image Size</strong> (or press <span class="shortcut">Command (⌘) + Option + I</span> on Mac / <span class="shortcut">Ctrl + Alt + I</span> on Windows).</p>
-            <p>Make sure your resolution is set to <strong>300 pixels/inch (ppi)</strong>.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">3</div>
-          <div class="step-title" style="color: var(--final);">Go to File → Export → Export As</div>
-          <div class="step-content">
-            <p>Press <span class="shortcut">Command (⌘) + Option + Shift + W</span> on Mac or <span class="shortcut">Ctrl + Alt + Shift + W</span> on Windows.</p>
-            <p><em>Alternatively:</em> Use <strong>File → Save As</strong> and choose JPEG format.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">4</div>
-          <div class="step-title" style="color: var(--final);">Configure Export Settings</div>
-          <div class="step-content">
-            <ul>
-              <li><strong>Format:</strong> JPG</li>
-              <li><strong>Quality:</strong> 100% (Maximum)</li>
-              <li><strong>Embed Color Profile:</strong> Checked (sRGB recommended)</li>
-            </ul>
-            <p><strong>If using Save As:</strong> Set Quality to 12 (Maximum) in the JPEG Options dialog.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">5</div>
-          <div class="step-title" style="color: var(--final);">Name Your Files Correctly</div>
-          <div class="step-content">
-            <p>Name each file with a number prefix to keep them in order:</p>
-            <ul>
-              <li><strong>01_TitlePage.jpg</strong></li>
-              <li><strong>02_Introduction.jpg</strong></li>
-              <li><strong>03_Research_01.jpg</strong></li>
-              <li><strong>04_Research_02.jpg</strong></li>
-              <li>...and so on</li>
-            </ul>
-            <p>This helps the PDF Builder sort your pages automatically!</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">6</div>
-          <div class="step-title" style="color: var(--final);">Repeat for All Pages</div>
-          <div class="step-content">
-            <p>Export each portfolio page as a separate JPEG file. You should have <strong>24-30 JPEG files</strong> when finished.</p>
-          </div>
-        </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-pink">4</span>Download and upload to Padlet<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ol><li>Click <strong>Download Progress Report</strong></li><li>Go to Padlet. Add your name as the title.</li><li>Upload your report</li></ol><p><a class="btn gold" href="https://padlet.com/artslondon/week-9-portfolio-checklist-game-and-document-your-practice-ejw4hqwg3sxmpsj" target="_blank" rel="noopener">Upload Task 2 to Padlet ↗</a></p>
       </div>
     </div>
-
-    <div class="important-notice" style="background: rgba(255, 107, 53, 0.15); border-left-color: var(--final);">
-      <strong style="color: var(--final);">Important:</strong> Make sure all your pages are exported at <strong>300 ppi resolution</strong> for high-quality print output. This is essential for your portfolio submission!
+    <div class="stuck">
+      <div class="stuck-head">🆘 Stuck? Try this</div>
+      <div class="row"><div class="prob">I don’t know which area to choose.</div><div class="fix">Pick the area you feel least sure about. Click <strong>Example</strong> to compare.</div></div>
+      <div class="row"><div class="prob">How do I export my page?</div><div class="fix"><span class="path">File › Export › Export As…</span> › Format: <strong>JPG</strong> › <strong>Export</strong>.</div></div>
+      <div class="row"><div class="prob">I finished my area early.</div><div class="fix">Click <strong>Complete</strong>. Then choose another area.</div></div>
+    </div>
+    <div class="checklist pink" id="cl-task2">
+      <h3>By the end of Task 2 you should have</h3>
+      <label><input type="checkbox"><span>Two progress reports uploaded to Padlet</span></label>
+      <label><input type="checkbox"><span>Each report on a different checklist area</span></label>
+      <label><input type="checkbox"><span>JPEGs showing your improvements</span></label>
+      <label><input type="checkbox"><span>Notes explaining what you changed and learned</span></label>
+    </div>
+    <div class="pager">
+      <button class="btn" data-goto="task1">← Task 1</button>
+      <button class="btn next" data-goto="task3">Next: PDF Builder guide →</button>
     </div>
 
-    <!-- How to Use PDF Builder -->
-    <h2>Step 2: Upload to PDF Builder</h2>
+  </section>
 
-    <div class="workflow-box" style="border-color: var(--final);">
-      <div class="workflow-header" style="background: var(--final);">
-        <h3>Using the PDF Builder Tool</h3>
-      </div>
-      <div class="workflow-steps">
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">1</div>
-          <div class="step-title" style="color: var(--final);">Enter Your Details</div>
-          <div class="step-content">
-            <p>Fill in your name, student number, unit title, and IPF group at the top of the page.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">2</div>
-          <div class="step-title" style="color: var(--final);">Drag & Drop Your Pages</div>
-          <div class="step-content">
-            <p>Either:</p>
-            <ul>
-              <li>Drag all your exported JPEGs onto the "Drag & Drop Multiple Pages Here" area</li>
-              <li>Or click individual page slots to upload one at a time</li>
-            </ul>
-            <p>Files will be sorted automatically by filename if you upload multiple at once.</p>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">3</div>
-          <div class="step-title" style="color: var(--final);">Review & Reorder</div>
-          <div class="step-content">
-            <p>Check that all pages are in the correct order. You can:</p>
-            <ul>
-              <li>Drag pages to swap positions</li>
-              <li>Click the X button to remove a page</li>
-              <li>Use the Preview button to see all pages at once</li>
-            </ul>
-          </div>
-        </div>
-        
-        <div class="step">
-          <div class="step-number" style="background: var(--final);">4</div>
-          <div class="step-title" style="color: var(--final);">Download Your PDF</div>
-          <div class="step-content">
-            <p>When you have 24-30 pages and everything looks correct, click the <strong>Download PDF</strong> button.</p>
-            <p>Your PDF will be named: Portfolio_YourName_StudentNumber_Date.pdf</p>
-          </div>
-        </div>
+  <section class="section" id="task3">
+    <div class="section-banner bg-purple">
+      <div class="num">Task 3 · Take home</div>
+      <div class="title">📄 PDF Builder Guide</div>
+    </div>
+    <div class="box purple">
+      <strong>📚 Take-home resource</strong>
+      <p style="margin:6px 0 0">Use this guide when you're ready to put your portfolio into one PDF. You may not finish it in class.</p>
+    </div>
+    <h2>📄 Portfolio PDF Builder</h2>
+    <p>Upload your <strong>24–30 A3 landscape pages</strong>. Put them in order. Download a PDF.</p>
+    <div class="cards">
+      <div class="card purple"><div class="label">Page 1</div><p>Title Page</p></div>
+      <div class="card purple"><div class="label">Page 2</div><p>Introduction</p></div>
+      <div class="card teal"><div class="label">Pages 3–12</div><p>Research (~10)</p></div>
+      <div class="card teal"><div class="label">Pages 13–22</div><p>Development (~10)</p></div>
+      <div class="card pink"><div class="label">Page 23</div><p>Similar / Different</p></div>
+      <div class="card pink"><div class="label">Page 24</div><p>Product Page</p></div>
+      <div class="card gold"><div class="label">Page 25</div><p>Final Line-Up</p></div>
+    </div>
+    <p><a class="btn purple" href="https://hsstokes.github.io/Portfolio-PDF-Builder/" target="_blank" rel="noopener">Open PDF Builder ↗</a></p>
+    <h2>Step 1 · Export pages from Photoshop (300 ppi)</h2>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">1</span>Open your Photoshop document<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Make sure the page is finished. Each portfolio page should be a separate PSD file.</p>
       </div>
     </div>
-
-    <div class="tip-box" style="border-color: var(--final); background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%);">
-      <h4 style="color: var(--final);">💡 PDF Builder Tips</h4>
-      <ul>
-        <li><strong>Your progress is saved automatically</strong> — you can close the browser and return later</li>
-        <li>Use the <strong>Checklist Guide</strong> button to review portfolio requirements</li>
-        <li>Aim for <strong>24-30 pages</strong> — the tool shows your progress clearly</li>
-        <li>Make sure your pages are <strong>A3 Landscape</strong> format for best results</li>
-        <li>All pages should be <strong>300 ppi</strong> for print quality</li>
-      </ul>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">2</span>Check the resolution<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Go to <span class="path">Image › Image Size</span> (<span class="key">Cmd + Option + I</span> Mac / <span class="key">Ctrl + Alt + I</span> Windows).</p><p>Resolution must be <strong>300 pixels/inch (ppi)</strong>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">3</span>Go to File › Export › Export As<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p><span class="key">Cmd + Option + Shift + W</span> Mac / <span class="key">Ctrl + Alt + Shift + W</span> Windows.</p><p><em>Or:</em> use <span class="path">File › Save As</span> and choose JPEG.</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">4</span>Choose the export settings<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ul><li><strong>Format:</strong> JPG</li><li><strong>Quality:</strong> 100% (maximum)</li><li><strong>Embed Color Profile:</strong> ticked (sRGB recommended)</li></ul><p><strong>Using Save As?</strong> Set Quality to 12 (maximum).</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">5</span>Name your files in order<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Start each name with a number:</p><ul><li><span class="file">01_TitlePage.jpg</span></li><li><span class="file">02_Introduction.jpg</span></li><li><span class="file">03_Research_01.jpg</span></li><li><span class="file">04_Research_02.jpg</span></li><li>…and so on</li></ul><p>The PDF Builder sorts your pages automatically!</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">6</span>Repeat for all pages<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Export each page as a separate JPEG. You should have <strong>24–30 JPEG files</strong>.</p>
+      </div>
+    </div>
+    <div class="box pink">
+      <strong>⚠️ Important</strong>
+      <p style="margin:6px 0 0">Export all pages at <strong>300 ppi</strong> for high-quality print. This is essential for your submission!</p>
+    </div>
+    <h2>Step 2 · Use the PDF Builder</h2>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">1</span>Enter your details<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>Fill in your name, student number, unit title and IPF group at the top.</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">2</span>Add your pages<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ul><li>Drag all your JPEGs onto the <strong>"Drag &amp; Drop Multiple Pages Here"</strong> area</li><li>Or click a page slot to upload one at a time</li></ul><p>Several files at once are sorted by file name.</p>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">3</span>Check and reorder<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <ul><li>Drag pages to swap positions</li><li>Click <strong>X</strong> to remove a page</li><li>Click <strong>Preview</strong> to see all pages</li></ul>
+      </div>
+    </div>
+    <div class="step">
+      <button class="step-head"><span class="step-num bg-purple">4</span>Download your PDF<span class="arrow">▶</span></button>
+      <div class="step-body">
+        <p>When you have 24–30 pages, click <strong>Download PDF</strong>.</p><p>Your file is named: <span class="file">Portfolio_YourName_StudentNumber_Date.pdf</span></p>
+      </div>
+    </div>
+    <div class="box teal">
+      <strong>💡 PDF Builder tips</strong>
+      <ul><li><strong>Your progress saves automatically</strong> – you can close the browser and come back</li><li>Use the <strong>Checklist Guide</strong> button to review requirements</li><li>Aim for <strong>24–30 pages</strong></li><li>Pages should be <strong>A3 Landscape</strong></li><li>All pages <strong>300 ppi</strong></li></ul>
+    </div>
+    <div class="stuck">
+      <div class="stuck-head">🆘 Stuck? Try this</div>
+      <div class="row"><div class="prob">My pages are in the wrong order.</div><div class="fix">Rename them with numbers first: <span class="file">01_</span>, <span class="file">02_</span>… Then upload again.</div></div>
+      <div class="row"><div class="prob">Image Size shows 72 ppi.</div><div class="fix">Go to <span class="path">Image › Image Size</span>. Untick <strong>Resample</strong>. Type <strong>300</strong>. Click OK.</div></div>
+      <div class="row"><div class="prob">My page is not landscape.</div><div class="fix">Check your document is <strong>A3 landscape</strong> before you export.</div></div>
+    </div>
+    <div class="checklist purple" id="cl-task3">
+      <h3>📋 Portfolio requirements</h3>
+      <label><input type="checkbox"><span>24–30 A3 landscape pages</span></label>
+      <label><input type="checkbox"><span>300 ppi for all pages</span></label>
+      <label><input type="checkbox"><span>Harvard referencing included</span></label>
+      <label><input type="checkbox"><span>Clear structure: Title → Intro → Research → Development → Refinement → Final</span></label>
+      <label><input type="checkbox"><span>Consistent typography and colour palette</span></label>
+      <label><input type="checkbox"><span>My name and student number on the title page</span></label>
+    </div>
+    <p style="text-align:center;margin:20px 0"><a class="btn purple" href="https://hsstokes.github.io/Portfolio-PDF-Builder/" target="_blank" rel="noopener">📄 Open PDF Builder ↗</a></p>
+    <div class="pager">
+      <button class="btn" data-goto="task2">← Task 2</button>
+      <button class="btn next" data-goto="overview">Back to start →</button>
     </div>
 
-    <!-- Requirements Reminder -->
-    <div class="reminder-box" style="border-color: var(--final); background: linear-gradient(135deg, var(--final-light) 0%, #fff 100%);">
-      <h4 style="color: var(--final);">📋 Portfolio Requirements Reminder</h4>
-      <ul>
-        <li>✓ <strong>24-30 A3 Landscape pages</strong></li>
-        <li>✓ <strong>300 ppi resolution</strong> for all pages</li>
-        <li>✓ Evidence of <strong>Harvard referencing</strong></li>
-        <li>✓ Clear structure: Title → Intro → Research → Development → Refinement → Final</li>
-        <li>✓ Consistent typography and colour palette</li>
-        <li>✓ Your name and student number on the title page</li>
-      </ul>
-    </div>
+  </section>
 
-    <!-- Final CTA -->
-    <div style="background: linear-gradient(135deg, var(--final), #e55a2b); padding: 40px; border-radius: 20px; margin: 40px 0; text-align: center; color: white;">
-      <h2 style="color: white; margin-top: 0; border: none;">🎉 Ready to Build Your PDF?</h2>
-      <p style="font-size: 1.2rem; opacity: 0.95; margin-bottom: 25px;">Open the PDF Builder tool and compile your portfolio!</p>
-      <a href="https://hsstokes.github.io/Portfolio-PDF-Builder/" target="_blank" style="display: inline-block; background: white; color: var(--final); padding: 20px 50px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 1.4rem; box-shadow: 0 5px 20px rgba(0,0,0,0.3); transition: all 0.3s ease;">
-        📄 Open PDF Builder →
-      </a>
-    </div>
-
-    <div class="nav-buttons">
-      <button class="nav-btn prev-btn" onclick="goToSection('task2')">Previous: Task 2</button>
-      <button class="nav-btn next-btn" onclick="goToSection('overview')">Back to Start</button>
-    </div>
-  </div>
-
-  <!-- Modal for image viewing -->
-  <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
+  <footer>UAL · Digital Skills · Week 9 · Portfolio Checklist Game · IELS Level 5</footer>
 </div>
 
-<button class="print-button" onclick="window.print()">🖨️</button>
+<div class="lightbox" id="lightbox"><img alt=""></div>
+<button class="print-btn" onclick="window.print()" title="Print">🖨️</button>
 
 <script>
-// Image Modal Functionality
-function openModal(src) {
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImage');
-  modal.style.display = "block";
-  modalImg.src = src;
+// ---------- Navigation ----------
+function goTo(id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.id == id));
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.toggle("active", b.dataset.target == id));
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
+document.querySelectorAll(".nav-btn").forEach(b => b.addEventListener("click", () => goTo(b.dataset.target)));
+document.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => goTo(b.dataset.goto)));
 
-// Quick Reference Toggle
-function toggleQuickReference() {
-  const content = document.getElementById('qrContent');
-  const toggle = document.getElementById('qrToggle');
-  
-  if (content.classList.contains('open')) {
-    content.classList.remove('open');
-    toggle.textContent = '+';
-    toggle.style.transform = 'rotate(0deg)';
-  } else {
-    content.classList.add('open');
-    toggle.textContent = '−';
-    toggle.style.transform = 'rotate(180deg)';
-  }
-}
+// ---------- Accordion ----------
+document.querySelectorAll(".step-head").forEach(h => h.addEventListener("click", () => h.parentElement.classList.toggle("open")));
 
-// Section Navigation
-const sections = ['overview', 'task1', 'task2', 'task3'];
-let currentSection = 'overview';
-
-function goToSection(sectionId) {
-  if (!sectionId) return;
-  
-  // Hide all sections
-  document.querySelectorAll('.content-section').forEach(section => {
-    section.classList.remove('active');
+// ---------- Checklists (saved in this browser) + progress ----------
+const PAGE = "portfolio";
+function updateProgress() {
+  const boxes = document.querySelectorAll(".checklist:not(.nocount) input");
+  let ticked = 0;
+  boxes.forEach(b => { if (b.checked) ticked++; });
+  const pct = boxes.length ? Math.round((ticked / boxes.length) * 100) : 0;
+  const fill = document.getElementById("progFill");
+  if (fill) { fill.style.width = pct + "%"; document.getElementById("progText").textContent = pct + "%"; }
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    const sec = document.getElementById(btn.dataset.target);
+    const items = sec ? sec.querySelectorAll(".checklist:not(.nocount) input") : [];
+    let done = items.length > 0;
+    items.forEach(b => { if (!b.checked) done = false; });
+    btn.classList.toggle("done", done);
   });
-  
-  // Show the selected section
-  document.getElementById(sectionId).classList.add('active');
-  
-  // Update active navigation block
-  document.querySelectorAll('.nav-block').forEach(block => {
-    block.classList.remove('active-block');
-    if (block.dataset.section === sectionId) {
-      block.classList.add('active-block');
-    }
+  document.querySelectorAll(".checklist").forEach(list => {
+    const all = list.querySelectorAll("input");
+    let n = 0;
+    all.forEach(b => { if (b.checked) n++; });
+    const count = list.querySelector(".count");
+    if (count) count.textContent = n + " / " + all.length;
+    const ready = list.querySelector(".ready");
+    if (ready) ready.classList.toggle("show", n == all.length);
   });
-  
-  // Update current section
-  currentSection = sectionId;
-  
-  // Update progress bar
-  updateProgressBar();
-  
-  // Scroll to top
-  window.scrollTo(0, 0);
 }
-
-function updateProgressBar() {
-  const progressBar = document.getElementById('progressBar');
-  const index = sections.indexOf(currentSection);
-  const percentage = ((index + 1) / sections.length) * 100;
-  progressBar.style.width = `${percentage}%`;
-}
-
-// Checklist Game Functions
-function showChecklistPage(pageId) {
-  // Update tab buttons
-  document.querySelectorAll('.checklist-tab').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  event.target.classList.add('active');
-  
-  // Hide all pages
-  document.querySelectorAll('.checklist-page').forEach(page => {
-    page.classList.remove('active');
-  });
-  
-  // Show selected page
-  document.getElementById(pageId).classList.add('active');
-}
-
-function toggleGameExample(button) {
-  const item = button.closest('.checklist-item-game');
-  const exampleContent = item.querySelector('.example-content');
-  
-  if (exampleContent.classList.contains('show')) {
-    exampleContent.classList.remove('show');
-    button.textContent = 'Example';
-  } else {
-    exampleContent.classList.add('show');
-    button.textContent = 'Hide';
-  }
-}
-
-function markGameComplete(button) {
-  const item = button.closest('.checklist-item-game');
-  item.classList.add('completed');
-  button.remove();
-  
-  // Update progress
-  updateChecklistProgress();
-  
-  // Check if page is complete
-  checkPageCompletion();
-  
-  // Save state
-  saveChecklistState();
-}
-
-function updateChecklistProgress() {
-  const totalItems = document.querySelectorAll('.checklist-item-game').length;
-  const completedItems = document.querySelectorAll('.checklist-item-game.completed').length;
-  
-  document.getElementById('checklistProgress').textContent = `${completedItems} / ${totalItems} Complete`;
-}
-
-function checkPageCompletion() {
-  // Check intro page
-  const introItems = document.querySelectorAll('#introChecklist .checklist-item-game');
-  const introCompleted = document.querySelectorAll('#introChecklist .checklist-item-game.completed');
-  
-  if (introItems.length === introCompleted.length && introItems.length > 0) {
-    document.getElementById('introCompleteMessage').classList.add('show');
-  }
-  
-  // Check main page
-  const mainItems = document.querySelectorAll('#mainChecklist .checklist-item-game');
-  const mainCompleted = document.querySelectorAll('#mainChecklist .checklist-item-game.completed');
-  
-  if (mainItems.length === mainCompleted.length && mainItems.length > 0) {
-    document.getElementById('mainCompleteMessage').classList.add('show');
-  }
-}
-
-function saveChecklistState() {
-  const completedItems = [];
-  document.querySelectorAll('.checklist-item-game.completed').forEach(item => {
-    completedItems.push(item.dataset.example);
-  });
-  localStorage.setItem('portfolio-checklist-state', JSON.stringify(completedItems));
-}
-
-function loadChecklistState() {
-  const savedState = localStorage.getItem('portfolio-checklist-state');
-  if (savedState) {
-    const completedItems = JSON.parse(savedState);
-    completedItems.forEach(example => {
-      const item = document.querySelector(`.checklist-item-game[data-example="${example}"]`);
-      if (item && !item.classList.contains('completed')) {
-        item.classList.add('completed');
-        const completeBtn = item.querySelector('.complete-btn');
-        if (completeBtn) completeBtn.remove();
-      }
-    });
-    updateChecklistProgress();
-    checkPageCompletion();
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('imageModal');
-  const closeBtn = document.getElementsByClassName('close')[0];
-  
-  // Close modal when clicking the × symbol
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      modal.style.display = "none";
-    });
-  }
-  
-  // Close modal when clicking outside the image
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
-  
-  // Set up navigation blocks
-  document.querySelectorAll('.nav-block').forEach(block => {
-    block.addEventListener('click', () => {
-      goToSection(block.dataset.section);
-    });
-  });
-  
-  // Initialize progress bar and active section
-  document.querySelector('.nav-block[data-section="overview"]').classList.add('active-block');
-  updateProgressBar();
-  
-  // Load saved checklist state
-  loadChecklistState();
+document.querySelectorAll(".checklist").forEach(list => {
+  const k = PAGE + "-" + list.id;
+  const boxes = list.querySelectorAll("input");
+  try {
+    const saved = JSON.parse(localStorage.getItem(k) || "[]");
+    boxes.forEach((b, i) => { if (saved[i]) b.checked = true; });
+  } catch (e) {}
+  boxes.forEach(b => b.addEventListener("change", () => {
+    try { localStorage.setItem(k, JSON.stringify(Array.from(boxes).map(x => x.checked))); } catch (e) {}
+    updateProgress();
+  }));
 });
+updateProgress();
+
+// ---------- Lightbox ----------
+const lb = document.getElementById("lightbox");
+document.querySelectorAll("img.zoom").forEach(im => im.addEventListener("click", () => {
+  lb.querySelector("img").src = im.src;
+  lb.classList.add("open");
+}));
+lb.addEventListener("click", () => lb.classList.remove("open"));
+</script>
+
+<script>
+// ---------- Checklist game ----------
+(function () {
+  const KEY = "portfolio-checklist-state";
+  const items = document.querySelectorAll(".game-item");
+  function count() {
+    let n = 0;
+    items.forEach(i => { if (i.classList.contains("done")) n++; });
+    document.getElementById("gameCount").textContent = n + " / " + items.length + " complete";
+    ["introChecklist", "mainChecklist"].forEach(id => {
+      const all = document.querySelectorAll("#" + id + " .game-item");
+      let d = 0;
+      all.forEach(i => { if (i.classList.contains("done")) d++; });
+      document.getElementById(id == "introChecklist" ? "introDone" : "mainDone").classList.toggle("show", d == all.length);
+    });
+  }
+  function save() {
+    const done = [];
+    items.forEach(i => { if (i.classList.contains("done")) done.push(i.dataset.example); });
+    try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+  }
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "[]");
+    items.forEach(i => { if (saved.includes(i.dataset.example)) { i.classList.add("done"); i.querySelector(".gi-done").textContent = "✓ Done"; } });
+  } catch (e) {}
+  items.forEach(i => {
+    const ex = i.querySelector(".gi-ex");
+    ex.addEventListener("click", () => {
+      i.classList.toggle("open");
+      ex.textContent = i.classList.contains("open") ? "Hide" : "Example";
+    });
+    const dn = i.querySelector(".gi-done");
+    dn.addEventListener("click", () => {
+      i.classList.toggle("done");
+      dn.textContent = i.classList.contains("done") ? "✓ Done" : "Complete";
+      save();
+      count();
+    });
+  });
+  document.querySelectorAll(".subtabs button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".subtabs button").forEach(x => x.classList.toggle("on", x == b));
+    document.querySelectorAll(".gpage").forEach(pg => pg.style.display = (pg.id == b.dataset.page) ? "block" : "none");
+  }));
+  count();
+})();
 </script>
 
 </body>
